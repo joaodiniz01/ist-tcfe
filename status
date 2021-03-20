@@ -1,0 +1,29 @@
+[33mcommit 4a67fc6ebdfc210cfe5531080e0a0a2cfd2b393d[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Joao Diniz <joao.diniz@tecnic.ulisboa.pt>
+Date:   Sun Mar 7 16:08:03 2021 +0000
+
+    teste lab t0
+
+[33mcommit fdc659720faba775070884950d0ad82810ca792b[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Jose T. de Sousa <jose.t.de.sousa@gmail.com>
+Date:   Wed Mar 3 17:33:03 2021 +0000
+
+    Update README.md
+
+[33mcommit 76e8cbe93ec12c50ad9188a7d6803e29fb3ec5be[m
+Author: Jose T. de Sousa <jose.t.de.sousa@gmail.com>
+Date:   Tue Feb 23 19:40:53 2021 +0000
+
+    fix typos and stuff
+
+[33mcommit dc7e87aa963f0d863d2f7659811470e13fd202eb[m
+Author: Jose T. de Sousa <jose.t.de.sousa@gmail.com>
+Date:   Tue Feb 23 14:05:29 2021 +0000
+
+    improve readme
+
+[33mcommit 87159b762c3e567f5dac7aa73c5d3ab2657f23cc[m
+Author: Jose T. de Sousa <jose.t.de.sousa@gmail.com>
+Date:   Mon Feb 22 03:20:12 2021 +0000
+
+    initial commit

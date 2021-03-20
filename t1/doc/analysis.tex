@@ -1,0 +1,66 @@
+\section{Theoretical Analysis}
+\label{sec:analysis}
+
+In this section, the circuit shown in Figure~\ref{fig:circuito} is analysed
+theoretically, this is, we will be using both the mesh method and the nodal method to calculate the remaining variables ($I_a$, $I_b$, $I_c$, $V_b$ and $V_c$).
+
+\subsection{Mesh Method}
+
+TESTE TEST ETSTSDAGHDG
+DKSJ \par
+HASHAHDJAHW
+
+\begin{equation}
+  Ri(t) + v_O(t) = v_I(t).
+  \label{eq:kvl}
+\end{equation}
+
+Because $v_O$ is the voltage between capacitor C's plates, it is related to the
+current $i$ by
+\begin{equation}
+  i(t) = C\frac{dv_O}{dt}.
+\end{equation}
+
+Hence, Equation~(\ref{eq:kvl}) can be rewritten as
+\begin{equation}
+  RC\frac{dv_O}{dt} + v_O(t) = v_I.
+  \label{eq:kvl2}
+\end{equation}
+
+Equation~(\ref{eq:kvl2}) is a linear differencial equation whose solution is a
+superposition of a natural solution $v_{On}$ and a forced solution $v_{Of}$:
+
+\begin{equation}
+  v_O(t) = v_{On}(t) + v_{Of}(t).
+  \label{eq:vo_sol}
+\end{equation}
+
+As learned in the theory classes the natural solution is of the form
+\begin{equation}
+  v_{On}(t) = Ae^{-\frac{t}{RC}},
+  \label{eq:vo_nat}
+\end{equation}
+where $A$ is an integration constant.
+
+The forced solution is of the form given in Equation~(\ref{eq:vo_for}) and is
+illustrated in Figure~\ref{fig:forced}.
+
+\begin{equation}
+  V_{Of}(t) = |\bar{V}_{Of}| cos(\omega t + \angle \bar{V}_{Of}),
+  \label{eq:vo_for}
+\end{equation}
+
+\lipsum[1-1]
+
+
+\begin{figure}[h] \centering
+\includegraphics[width=0.8\linewidth]{forced.eps}
+\caption{Forced sinusoidal response.}
+\label{fig:forced}
+\end{figure}
+
+\section{Frequency response}
+
+\lipsum[1-1]
+
+
