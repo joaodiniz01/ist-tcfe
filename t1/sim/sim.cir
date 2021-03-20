@@ -9,7 +9,7 @@
 *Voltage source
 
 Va n1 0 5.04611069501311
-V1 n4 n9 DC 0
+V0 n4 n9 DC 0
 
 *Current source
 
@@ -17,8 +17,8 @@ Id n8 n6 DC 1.0397027739760396m
 
 *Voltage-Controlled Dependent Sources
 
-Hc n5 n8 V1 8.394963923537722k
-Gb n6 n3 n2 n5 7.175215229391312m
+H0 n5 n8 V0 8.394963923537722k
+G0 n6 n3 n2 n5 7.175215229391312m
 
 * Resistors
 
