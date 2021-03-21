@@ -51,6 +51,14 @@ Vb = solutionmesh(4)
 Vc = solutionmesh(5)
 Id
 
+% Table
+
+fid = fopen ("meshtable.tex", "w");
+fprintf(fid, "$V_b$ & %e \\\\ \\hline \n", Vb);
+fprintf(fid, "$V_c$ & %e \\\\ \\hline \n", Vc);
+fprintf(fid, "$I_b$ & %e \\\\ \\hline \n", Ib);
+fprintf(fid, "$I_c$ & %e \\\\ \n", Ic);
+fclose (fid);
 
 
 
