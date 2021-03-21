@@ -30,26 +30,26 @@ All the variables preceded by @ are currents and are expressed in Ampere, the ot
 Using these voltages at the nodes, we can calculate the variables that were calculated above using both the mesh and nodal methods so we can compare them and see the what could be differences between them. \par
 
 \begin{equation}
-  V_b = n2 - n5 \quad \text{ which equals to } -0.036516V
+  V_b = n2 - n5 \quad \text{ which equals to } -0.041290V
   \label{eq18}
 \end{equation}
 
 \begin{equation}
-  V_c = n8 - n5 \quad \text{ which equals to } -7.636595V
+  V_c = n8 - n5 \quad \text{ which equals to } -7.5564V
   \label{eq19}
 \end{equation}
 
-As for the currents $I_b$ and $I_c$, we can get them in the NGSpice results by seeing in which resistor the current is that value. $I_b$ is the current that goes through $R_2$ and therefore it is 0.262010$mA$ and $I_c$ is the current that goes through $R_6$ and therefore it is 0.9096634$mA$. \par
+As for the currents $I_b$ and $I_c$, we can get them in the NGSpice results by seeing in which resistor the current is that value. $I_b$ is the current that goes through $R_2$ and therefore it is 0.300677$mA$ and $I_c$ is the current that goes through $R_6$ and therefore it is 0.9031846$mA$. \par
 Putting these values in a table so that we can analyse them and compare them more easily we get the following table:
 
 \begin{center}
   \begin{tabular}{ | c | c | }
     \hline    
     {\bf Name} & {\bf Value [A or V]} \\ \hline
-    $V_b$ & -0.036516 \\ \hline 
-    $V_c$ & -7.636595 \\ \hline 
-    $I_b$ & 2.62010e-04 \\ \hline 
-    $I_c$ & 9.096634e-04 \\ 
+    $V_b$ & -0.041290 \\ \hline 
+    $V_c$ & -7.5564 \\ \hline 
+    $I_b$ & 3.00677e-04 \\ \hline 
+    $I_c$ & 9.031846e-04 \\ 
     \hline
   \end{tabular}
 \end{center}
