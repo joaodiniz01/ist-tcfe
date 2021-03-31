@@ -8,12 +8,12 @@
 
 *Voltage source
 
-Va n1 0 5.02522591213
-V0 n4 n9 DC 0
+Vs n1 0 0
+V0 n7 n9 DC 0
 
-*Current source
+*Voltage source in the place of Capacitor (v6-v8)
 
-Id n8 n6 DC 1.00982536324m
+Vx n8 n6 8.49302
 
 *Dependent Sources
 
@@ -26,8 +26,8 @@ R1 n1 n2 1.04765357286k
 R2 n3 n2 2.06140068334k
 R3 n2 n5 3.03459085363k
 R4 n5 0 4.00398818216k
-R5 n5 n6 3.11499853456k
-R6 0 n4 2.04588646991k
+R5 n5 n6 3.11499853456k 
+R6 0 n7 2.04588646991k
 R7 n9 n8 1.04390152967k
 
 *.model P2model NPN(Bf=200, CJE=12pF, CJC=2pF)
