@@ -9,7 +9,7 @@
 *Voltage source
 
 Vs n1 0 5.02522591213 
-V0 n7 n9 DC 0
+V0 n8 n9 DC 0
 
 *Capacitor
 
@@ -17,7 +17,7 @@ C0 n6 n8 1.00982536324u
 
 *Dependent Sources
 
-H0 n5 n8 V0 8.36641247715k
+H0 n5 n9 V0 8.36641247715k
 G0 n6 n3 n2 n5 7.28209304852m
 
 * Resistors
@@ -28,7 +28,7 @@ R3 n2 n5 3.03459085363k
 R4 n5 0 4.00398818216k
 R5 n5 n6 3.11499853456k 
 R6 0 n7 2.04588646991k
-R7 n9 n8 1.04390152967k
+R7 n7 n8 1.04390152967k
 
 *.model P2model NPN(Bf=200, CJE=12pF, CJC=2pF)
 
