@@ -8,7 +8,7 @@
 
 *Voltage source
 
-Vs n1 0 5.02522591213 
+Vs n1 0 DC 0 
 V0 n7 n9 DC 0
 
 *Capacitor
@@ -29,6 +29,11 @@ R4 n5 0 4.00398818216k
 R5 n5 n6 3.11499853456k 
 R6 0 n7 2.04588646991k
 R7 n9 n8 1.04390152967k
+
+* Boundary Conditions
+
+.ic v(n6) = -8.49302e00
+.ic v(n8) = 0
 
 *.model P2model NPN(Bf=200, CJE=12pF, CJC=2pF)
 
@@ -53,6 +58,15 @@ echo "****************"
 echo  "op_TAB"
 print all
 echo  "op_END"
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-3 20e-3
+
+hardcopy transient3.ps v(n6)
+echo transiet3_FIG
+
 
 quit
 .endc

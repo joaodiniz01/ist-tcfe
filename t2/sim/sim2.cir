@@ -8,7 +8,7 @@
 
 *Voltage source
 
-Vs n1 0 0
+Vs n1 0 DC 0
 V0 n7 n9 DC 0
 
 *Voltage source in the place of Capacitor (v6-v8)

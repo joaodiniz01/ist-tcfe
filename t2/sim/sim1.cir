@@ -8,7 +8,7 @@
 
 *Voltage source
 
-Vs n1 0 5.02522591213 
+Vs n1 0 DC 5.02522591213 
 V0 n8 n9 DC 0
 
 *Capacitor
