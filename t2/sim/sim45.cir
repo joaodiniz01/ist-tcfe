@@ -8,7 +8,7 @@
 
 *Voltage source
 
-Vs n1 0 DC 0 
+Vs n1 0 0.0 ac 1.0 sin(0 1 1k)
 V0 n7 n9 DC 0
 
 *Capacitor
@@ -64,8 +64,24 @@ echo  "Transient analysis"
 echo "********************************************"
 tran 1e-3 20e-3
 
-hardcopy transient3.ps v(n6)
-echo transient3_FIG
+hardcopy transient4r.ps v(n6)
+echo transient4r_FIG
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-3 20e-3
+
+hardcopy transient4s.ps v(n1)
+echo transient4s_FIG
+
+echo "********************************************"
+echo  "Frequency analysis"
+echo "********************************************"
+ac dec 10 0.1 1MEG
+
+hardcopy fresponse.ps db(v(n6)) db(v(n1))
+echo fresponse_FIG
 
 
 quit
