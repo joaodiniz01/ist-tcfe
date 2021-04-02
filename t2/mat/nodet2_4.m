@@ -64,6 +64,20 @@ Id = solutionnodes(7)
 Ib = solutionnodes(8)
 Ic = solutionnodes(9)
 
+% Table
+fid = fopen ("node1.tex", "w");
+fprintf(fid, "$V_1$ & %e \\\\ \\hline \n", V1);
+fprintf(fid, "$V_2$ & %e \\\\ \\hline \n", V2);
+fprintf(fid, "$V_3$ & %e \\\\ \\hline \n", V3);
+fprintf(fid, "$V_5$ & %e \\\\ \\hline \n", V5);
+fprintf(fid, "$V_6$ & %e \\\\ \\hline \n", V6);
+fprintf(fid, "$V_7$ & %e \\\\ \\hline \n", V7);
+fprintf(fid, "$V_8$ & %e \\\\ \\hline \n", V8);
+fprintf(fid, "$I_d$ & %e \\\\ \\hline \n", Id);
+fprintf(fid, "$I_b$ & %e \\\\ \\hline \n", Ib);
+fprintf(fid, "$I_c$ & %e \\\\ \n", Ic);
+fclose (fid);
+
 V6 = abs(V6_ph)
 C = 1.00982536324e-6
 Req =  3114.998534560000

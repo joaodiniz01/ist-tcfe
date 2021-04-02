@@ -1,0 +1,151 @@
+close all
+clear all
+format long
+
+% Data read
+dados=fopen('data.txt','r');
+data=fscanf(dados, '%f', [inf]);
+data = data';
+fclose(dados);
+
+R1 = (str2num(sprintf('%.11f', data(1))))*(10^3);
+R2 = (str2num(sprintf('%.11f', data(2))))*(10^3);
+R3 = (str2num(sprintf('%.11f', data(3))))*(10^3);
+R4 = (str2num(sprintf('%.11f', data(4))))*(10^3);
+R5 = (str2num(sprintf('%.11f', data(5))))*(10^3);
+R6 = (str2num(sprintf('%.11f', data(6))))*(10^3);
+R7 = (str2num(sprintf('%.11f', data(7))))*(10^3);
+Vs = str2num(sprintf('%.11f', data(8)));
+C = (str2num(sprintf('%.11f', data(9))))*(10^-6);
+Kb = (str2num(sprintf('%.11f', data(10))))*(10^-3);
+Kd = (str2num(sprintf('%.11f', data(11))))*(10^3);
+
+% Data write NGspice
+dir = '/home/joao/ist-tcfe/t2/sim';
+dadosw=fopen(fullfile(dir,'sim1data.cir'),'w');
+fprintf(dadosw, 'R1 n1 n2 %.11fk\n', data(1));
+fprintf(dadosw, 'R2 n3 n2 %.11fk\n', data(2));
+fprintf(dadosw, 'R3 n2 n5 %.11fk\n', data(3));
+fprintf(dadosw, 'R4 n5 0 %.11fk\n', data(4));
+fprintf(dadosw, 'R5 n5 n6 %.11fk\n', data(5));
+fprintf(dadosw, 'R6 0 n7 %.11fk\n', data(6));
+fprintf(dadosw, 'R7 n7 n8 %.11fk\n', data(7));
+fprintf(dadosw, 'Vs n1 0 DC %.11f\n', data(8));
+fprintf(dadosw, 'V0 n8 n9 DC 0\n');
+fprintf(dadosw, 'C0 n6 n8 %.11fu\n', data(9));
+fprintf(dadosw, 'G0 n6 n3 n2 n5 %.11fm\n', data(10));
+fprintf(dadosw, 'H0 n5 n9 V0 %.11fk\n', data(11));
+fclose(dadosw);
+
+dadosw2=fopen(fullfile(dir,'sim2data.cir'),'w');
+fprintf(dadosw2, 'R1 n1 n2 %.11fk\n', data(1));
+fprintf(dadosw2, 'R2 n3 n2 %.11fk\n', data(2));
+fprintf(dadosw2, 'R3 n2 n5 %.11fk\n', data(3));
+fprintf(dadosw2, 'R4 n5 0 %.11fk\n', data(4));
+fprintf(dadosw2, 'R5 n5 n6 %.11fk\n', data(5));
+fprintf(dadosw2, 'R6 0 n7 %.11fk\n', data(6));
+fprintf(dadosw2, 'R7 n9 n8 %.11fk\n', data(7));
+fprintf(dadosw2, 'Vs n1 0 DC 0\n');
+fprintf(dadosw2, 'V0 n7 n9 DC 0\n');
+fprintf(dadosw2, 'Vx n8 n6 8.49302\n');
+fprintf(dadosw2, 'G0 n6 n3 n2 n5 %.11fm\n', data(10));
+fprintf(dadosw2, 'H0 n5 n8 V0 %.11fk\n', data(11));
+fclose(dadosw2);
+
+dadosw3=fopen(fullfile(dir,'sim3data.cir'),'w');
+fprintf(dadosw3, 'R1 n1 n2 %fk\n', data(1));
+fprintf(dadosw3, 'R2 n3 n2 %fk\n', data(2));
+fprintf(dadosw3, 'R3 n2 n5 %fk\n', data(3));
+fprintf(dadosw3, 'R4 n5 0 %fk\n', data(4));
+fprintf(dadosw3, 'R5 n5 n6 %fk\n', data(5));
+fprintf(dadosw3, 'R6 0 n7 %fk\n', data(6));
+fprintf(dadosw3, 'R7 n9 n8 %fk\n', data(7));
+fprintf(dadosw3, 'Vs n1 0 DC 0\n');
+fprintf(dadosw3, 'V0 n7 n9 DC 0\n');
+fprintf(dadosw3, 'C0 n6 n8 %fu\n', data(9));
+fprintf(dadosw3, 'G0 n6 n3 n2 n5 %fm\n', data(10));
+fprintf(dadosw3, 'H0 n5 n8 V0 %fk\n', data(11));
+fprintf(dadosw3, '.ic v(n6) = 8.49302e00\n');
+fprintf(dadosw3, '.ic v(n8) = 0\n');
+fclose(dadosw3);
+
+dadosw4=fopen(fullfile(dir,'sim45data.cir'),'w');
+fprintf(dadosw4, 'R1 n1 n2 %fk\n', data(1));
+fprintf(dadosw4, 'R2 n3 n2 %fk\n', data(2));
+fprintf(dadosw4, 'R3 n2 n5 %fk\n', data(3));
+fprintf(dadosw4, 'R4 n5 0 %fk\n', data(4));
+fprintf(dadosw4, 'R5 n5 n6 %fk\n', data(5));
+fprintf(dadosw4, 'R6 0 n7 %fk\n', data(6));
+fprintf(dadosw4, 'R7 n9 n8 %fk\n', data(7));
+fprintf(dadosw4, 'Vs n1 0 0.0 ac 1.0 sin(0 1 1k)\n');
+fprintf(dadosw4, 'V0 n7 n9 DC 0\n');
+fprintf(dadosw4, 'C0 n6 n8 %fu\n', data(9));
+fprintf(dadosw4, 'G0 n6 n3 n2 n5 %fm\n', data(10));
+fprintf(dadosw4, 'H0 n5 n8 V0 %fk\n', data(11));
+fprintf(dadosw4, '.ic v(n6) = 8.49302e00\n');
+fprintf(dadosw4, '.ic v(n8) = 0\n');
+fclose(dadosw4);
+
+% End data write
+
+V1 = Vs
+
+
+E = [ -1/R1-1/R2-1/R3   , 1/R2    , 1/R3    , 0 , 0 , 0 , 0     , 0     , 0   ;...
+      1/R3    , 0    , -1/R3-1/R5-1/R4   , 1/R5 ,0     , 0     , 1    , 0     , 0       ;...
+      0   , 0    , 1/R5  , -1/R5    , 0       , 0     , 0     , -1     , -1    ;...
+      0    , 0    , 0   ,    0       , 1/R7     , -1/R7    , -1  , 0     , 1  ;...
+      0    , 0    , 1    , 0   , 0      , -1    , -Kd    , 0     , 0     ;...
+      1/R1    , 0   , 1/R4   , 0   , 0       , 0     , -1     , 0     , 0       ;...
+      1/R2    , -1/R2   , 0    , 0   , 0       , 0     , 0     , 1    , 0     ;...
+      1   , 0    , -1    , 0   , 0       , 0     , 0     , -1/Kb     , 0      ;...
+      0    , 0    , 0    , 0   ,  1/R6      , 0     , 1    , 0     , 0    ];
+      
+D = [ -V1/R1; 0; 0; 0; 0; V1/R1; 0; 0; 0];
+
+solutionnodes = C\D;
+V1
+V2 = solutionnodes(1)
+V3 = solutionnodes(2)
+V5 = solutionnodes(3)
+V6 = solutionnodes(4)
+V7 = solutionnodes(5)
+V8 = solutionnodes(6)
+Id = solutionnodes(7)
+Ib = solutionnodes(8)
+Ic = solutionnodes(9)
+
+
+%Current in all branches
+I1 = (V2-V1)/R1
+I2 = Ib
+I3 = (V5-V2)/R3
+I4 = V5/R4
+I5 = (V6-V5)/R5
+I6 = Id
+I7 = Id
+Is = I1
+
+% Table
+
+fid = fopen ("node1.tex", "w");
+fprintf(fid, "$V_1$ & %e \\\\ \\hline \n", V1);
+fprintf(fid, "$V_2$ & %e \\\\ \\hline \n", V2);
+fprintf(fid, "$V_3$ & %e \\\\ \\hline \n", V3);
+fprintf(fid, "$V_5$ & %e \\\\ \\hline \n", V5);
+fprintf(fid, "$V_6$ & %e \\\\ \\hline \n", V6);
+fprintf(fid, "$V_7$ & %e \\\\ \\hline \n", V7);
+fprintf(fid, "$V_8$ & %e \\\\ \\hline \n", V8);
+fprintf(fid, "$I_1$ & %e \\\\ \\hline \n", I1);
+fprintf(fid, "$I_2$ & %e \\\\ \\hline \n", I2);
+fprintf(fid, "$I_3$ & %e \\\\ \\hline \n", I3);
+fprintf(fid, "$I_4$ & %e \\\\ \\hline \n", I4);
+fprintf(fid, "$I_5$ & %e \\\\ \\hline \n", I5);
+fprintf(fid, "$I_6$ & %e \\\\ \\hline \n", I6);
+fprintf(fid, "$I_7$ & %e \\\\ \\hline \n", I7);
+fprintf(fid, "$I_s$ & %e \\\\ \\hline \n", Is);
+fprintf(fid, "$I_d$ & %e \\\\ \\hline \n", Id);
+fprintf(fid, "$I_b$ & %e \\\\ \\hline \n", Ib);
+fprintf(fid, "$I_c$ & %e \\\\ \n", Ic);
+fclose (fid);
+
