@@ -21,7 +21,7 @@ Kb = (str2num(sprintf('%.11f', data(10))))*(10^-3);
 Kd = (str2num(sprintf('%.11f', data(11))))*(10^3);
 
 % Data write NGspice
-dir = '/home/joao/ist-tcfe/t2/sim';
+dir = '../sim';
 dadosw=fopen(fullfile(dir,'sim1data.cir'),'w');
 fprintf(dadosw, 'R1 n1 n2 %.11fk\n', data(1));
 fprintf(dadosw, 'R2 n3 n2 %.11fk\n', data(2));
