@@ -65,7 +65,7 @@ fprintf(dadosw3, 'V0 n7 n9 DC 0\n');
 fprintf(dadosw3, 'C0 n6 n8 %fu\n', data(9));
 fprintf(dadosw3, 'G0 n6 n3 n2 n5 %fm\n', data(10));
 fprintf(dadosw3, 'H0 n5 n8 V0 %fk\n', data(11));
-fprintf(dadosw3, '.ic v(n6) = -8.49302e00\n');
+fprintf(dadosw3, '.ic v(n6) = 8.49302e00\n');
 fprintf(dadosw3, '.ic v(n8) = 0\n');
 fclose(dadosw3);
 
@@ -82,7 +82,7 @@ fprintf(dadosw4, 'V0 n7 n9 DC 0\n');
 fprintf(dadosw4, 'C0 n6 n8 %fu\n', data(9));
 fprintf(dadosw4, 'G0 n6 n3 n2 n5 %fm\n', data(10));
 fprintf(dadosw4, 'H0 n5 n8 V0 %fk\n', data(11));
-fprintf(dadosw4, '.ic v(n6) = -8.49302e00\n');
+fprintf(dadosw4, '.ic v(n6) = 8.49302e00\n');
 fprintf(dadosw4, '.ic v(n8) = 0\n');
 fclose(dadosw4);
 

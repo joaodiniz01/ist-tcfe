@@ -15,8 +15,8 @@ R4 = (str2num(sprintf('%.11f', data(4))))*(10^3);
 R5 = (str2num(sprintf('%.11f', data(5))))*(10^3);
 R6 = (str2num(sprintf('%.11f', data(6))))*(10^3);
 R7 = (str2num(sprintf('%.11f', data(7))))*(10^3);
-Vs = str2num(sprintf('%.11f', data(8)));
-C = (str2num(sprintf('%.11f', data(9))))*(10^-6);
+Vs = 0
+C = (str2num(sprintf('%.11f', data(9))));
 Kb = (str2num(sprintf('%.11f', data(10))))*(10^-3);
 Kd = (str2num(sprintf('%.11f', data(11))))*(10^3);
 
@@ -58,5 +58,5 @@ Ix = (Vx-V5)/R5
 I6 = Id
 I7 = Id
 Is = I1
-Req = Vx/Ix
+Req = (Vx/Ix)*(10^-3)
 tau = Req*C
