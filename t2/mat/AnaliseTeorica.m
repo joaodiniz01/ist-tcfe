@@ -2,6 +2,11 @@ close all
 clear all
 format long
 
+
+##############################
+#Alinea 1
+#############################
+
 % Data read
 dados=fopen('data.txt','r');
 data=fscanf(dados, '%f', [inf]);
@@ -19,6 +24,7 @@ Vs = str2num(sprintf('%.11f', data(8)));
 C = (str2num(sprintf('%.11f', data(9))))*(10^-6);
 Kb = (str2num(sprintf('%.11f', data(10))))*(10^-3);
 Kd = (str2num(sprintf('%.11f', data(11))))*(10^3);
+
 
 % Data write NGspice
 dir = '../sim';
@@ -103,7 +109,7 @@ E = [ -1/R1-1/R2-1/R3   , 1/R2    , 1/R3    , 0 , 0 , 0 , 0     , 0     , 0   ;.
       
 D = [ -V1/R1; 0; 0; 0; 0; V1/R1; 0; 0; 0];
 
-solutionnodes = C\D;
+solutionnodes = E\D;
 V1
 V2 = solutionnodes(1)
 V3 = solutionnodes(2)
@@ -149,3 +155,194 @@ fprintf(fid, "$I_b$ & %e \\\\ \\hline \n", Ib);
 fprintf(fid, "$I_c$ & %e \\\\ \n", Ic);
 fclose (fid);
 
+
+
+
+########################################
+# Alinea 2
+########################################
+
+% Data read
+dados=fopen('data.txt','r');
+data=fscanf(dados, '%f', [inf]);
+data = data';
+fclose(dados);
+
+C = (str2num(sprintf('%.11f', data(9))))
+
+Vs = 0
+
+%da alinea anterior temos que 
+Vx = V6-V8
+V1 = Vs
+
+
+G = [ -1/R1-1/R2-1/R3   , 1/R2    , 1/R3    , 0 , 0 , 0 , 0     , 0     , 0   ;...
+      1/R3    , 0    , -1/R3-1/R5-1/R4   , 1/R5 ,0     , 0     , 1    , 0     , 0       ;...
+      0   , 0    , 1/R5  , -1/R5    , 0       , 0     , 0     , -1     , -1    ;...
+      0    , 0    , 0   ,    0       , 1/R7     , -1/R7    , -1  , 0     , 1  ;...
+      0    , 0    , 1    , 0   , 0      , -1    , -Kd    , 0     , 0     ;...
+      1/R1    , 0   , 1/R4   , 0   , 0       , 0     , -1     , 0     , 0       ;...
+      1/R2    , -1/R2   , 0    , 0   , 0       , 0     , 0     , 1    , 0     ;...
+      1   , 0    , -1    , 0   , 0       , 0     , 0     , -1/Kb     , 0      ;...
+      0    , 0    , 0    , 0   ,  1/R6      , 0     , 1    , 0     , 0    ];
+      
+H = [ -V1/R1; 0; 0; 0; 0; V1/R1; 0; 0; 0];
+
+solutionnodes = G\H;
+V1
+V2 = solutionnodes(1)
+V3 = solutionnodes(2)
+V5 = solutionnodes(3)
+V7 = solutionnodes(5)
+Id = solutionnodes(7)
+Ib = solutionnodes(8)
+Ic = solutionnodes(9)
+%Current in all branches
+I1 = (V2-V1)/R1
+I2 = Ib
+I3 = (V5-V2)/R3
+I4 = V5/R4
+I5 = (Vx-V5)/R5
+Ix = I5
+I6 = Id
+I7 = Id
+Is = I1
+V6 = Vx
+V8 = 0
+Req = (Vx/Ix)*(10^-3)
+tau = Req*C
+
+
+% Table
+
+fid = fopen ("node2.tex", "w");
+fprintf(fid, "$V_x$ & %e \\\\ \\hline \n", Vx);
+fprintf(fid, "$V_1$ & %e \\\\ \\hline \n", V1);
+fprintf(fid, "$V_2$ & %e \\\\ \\hline \n", V2);
+fprintf(fid, "$V_3$ & %e \\\\ \\hline \n", V3);
+fprintf(fid, "$V_5$ & %e \\\\ \\hline \n", V5);
+fprintf(fid, "$V_6$ & %e \\\\ \\hline \n", V6);
+fprintf(fid, "$V_7$ & %e \\\\ \\hline \n", V7);
+fprintf(fid, "$V_8$ & %e \\\\ \\hline \n", V8);
+fprintf(fid, "$I_1$ & %e \\\\ \\hline \n", I1);
+fprintf(fid, "$I_2$ & %e \\\\ \\hline \n", I2);
+fprintf(fid, "$I_3$ & %e \\\\ \\hline \n", I3);
+fprintf(fid, "$I_4$ & %e \\\\ \\hline \n", I4);
+fprintf(fid, "$I_5$ & %e \\\\ \\hline \n", I5);
+fprintf(fid, "$I_6$ & %e \\\\ \\hline \n", I6);
+fprintf(fid, "$I_7$ & %e \\\\ \\hline \n", I7);
+fprintf(fid, "$I_s$ & %e \\\\ \\hline \n", Is);
+fprintf(fid, "$I_d$ & %e \\\\ \\hline \n", Id);
+fprintf(fid, "$I_b$ & %e \\\\ \\hline \n", Ib);
+fprintf(fid, "$I_x$ & %e \\\\ \\hline \n", Ix);
+fprintf(fid, "$Req (kOhm)$ & %e \\\\ \\hline \n", Req);
+fprintf(fid, "$tau (ms)$ & %e \\\\ \n", tau);
+fclose (fid);
+
+
+
+########################################
+# Alinea 3
+########################################
+
+A = Vx-V8
+
+t = 0:0.1:20
+V6n = A*exp(-t/tau)
+
+plot(t, V6n)
+xlabel ("t (ms)")
+ylabel ("V6n (V)")
+title ("Natural Solution V6n(t)")
+
+
+########################################
+# Alinea 4
+########################################
+
+% Data read
+dados=fopen('data.txt','r');
+data=fscanf(dados, '%f', [inf]);
+data = data';
+fclose(dados);
+
+C = (str2num(sprintf('%.11f', data(9))))*(10^-6)
+
+Vs = 1
+v_s = Vs*exp(-i*(pi/2))
+
+V1 = v_s
+
+J = [ -1/R1-1/R2-1/R3   , 1/R2    , 1/R3    , 0 , 0 , 0 , 0     , 0     , 0   ;...
+      1/R3    , 0    , -1/R3-1/R5-1/R4   , 1/R5 ,0     , 0     , 1    , 0     , 0       ;...
+      0   , 0    , 1/R5  , -1/R5    , 0       , 0     , 0     , -1     , -1    ;...
+      0    , 0    , 0   ,    0       , 1/R7     , -1/R7    , -1  , 0     , 1  ;...
+      0    , 0    , 1    , 0   , 0      , -1    , -Kd    , 0     , 0     ;...
+      1/R1    , 0   , 1/R4   , 0   , 0       , 0     , -1     , 0     , 0       ;...
+      1/R2    , -1/R2   , 0    , 0   , 0       , 0     , 0     , 1    , 0     ;...
+      1   , 0    , -1    , 0   , 0       , 0     , 0     , -1/Kb     , 0      ;...
+      0    , 0    , 0    , 0   ,  1/R6      , 0     , 1    , 0     , 0    ];
+      
+L = [ -V1/R1; 0; 0; 0; 0; V1/R1; 0; 0; 0];
+
+solutionnodes = J\L;
+V1
+V2 = solutionnodes(1)
+V3 = solutionnodes(2)
+V5 = solutionnodes(3)
+V6_ph = solutionnodes(4)
+V7 = solutionnodes(5)
+V8 = solutionnodes(6)
+Id = solutionnodes(7)
+Ib = solutionnodes(8)
+Ic = solutionnodes(9)
+
+% Table
+fid = fopen ("node4.tex", "w");
+fprintf(fid, "$V_1$ & %e \\\\ \\hline \n", V1);
+fprintf(fid, "$V_2$ & %e \\\\ \\hline \n", V2);
+fprintf(fid, "$V_3$ & %e \\\\ \\hline \n", V3);
+fprintf(fid, "$V_5$ & %e \\\\ \\hline \n", V5);
+fprintf(fid, "$V_6$ & %e \\\\ \\hline \n", V6);
+fprintf(fid, "$V_7$ & %e \\\\ \\hline \n", V7);
+fprintf(fid, "$V_8$ & %e \\\\ \n", V8);
+fclose (fid);
+
+V6_modul = abs(V6_ph)
+Req = Req*1000
+fase6 = 0 + atan(2*pi*1000*Req*C)
+
+t =  0:0.1:20;
+V6f = V6_modul*cos((t/1000)*2*1000*pi - fase6);
+
+plot(t, V6f)
+xlabel ("t (ms)")
+ylabel ("V6f (V)")
+title ("Forced Solution V6f(t)")
+
+
+########################################
+# Alinea 5
+########################################
+
+% Data read
+dados=fopen('data.txt','r');
+data=fscanf(dados, '%f', [inf]);
+data = data';
+fclose(dados);
+
+Vs = str2num(sprintf('%.11f', data(8)));
+
+
+% t =[0,20]
+t1 =  0:0.1:20;
+vs_t1 = sin(2*pi*1000*(t1/1000))
+V6_t1 = V6n + V6f
+% t<0
+V6 = 5.702372676500307
+t2 = -5:0.1:0
+vs_t2 = Vs
+V6_t2 = V6
+
+plot(t1, V6_t1, 'b',t1 ,vs_t1, 'r', t2, V6_t2, 'b', t2, vs_t2, 'r')
