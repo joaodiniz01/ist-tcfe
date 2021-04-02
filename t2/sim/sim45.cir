@@ -6,34 +6,7 @@
 * forces current values to be saved
 .options savecurrents
 
-*Voltage source
-
-Vs n1 0 0.0 ac 1.0 sin(0 1 1k)
-V0 n7 n9 DC 0
-
-*Capacitor
-
-C0 n6 n8 1.00982536324u
-
-*Dependent Sources
-
-H0 n5 n8 V0 8.36641247715k
-G0 n6 n3 n2 n5 7.28209304852m
-
-* Resistors
-
-R1 n1 n2 1.04765357286k
-R2 n3 n2 2.06140068334k
-R3 n2 n5 3.03459085363k
-R4 n5 0 4.00398818216k
-R5 n5 n6 3.11499853456k 
-R6 0 n7 2.04588646991k
-R7 n9 n8 1.04390152967k
-
-* Boundary Conditions
-
-.ic v(n6) = -8.49302e00
-.ic v(n8) = 0
+.INCLUDE sim45data.cir
 
 *.model P2model NPN(Bf=200, CJE=12pF, CJC=2pF)
 
