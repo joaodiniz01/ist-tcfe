@@ -15,19 +15,15 @@ data.txt:
 
 open:
 	make -C mat
+	make -C sim
 	#make -C doc
 	#cp doc/report.pdf 
 	
 clean:
 	@rm -f *.txt
-	@rm -f mat/*.txt
-	@rm -f mat/*.cir
-	@rm -f sim/sim1data.cir
-	@rm -f sim/sim2data.cir
-	@rm -f sim/sim3data.cir
-	@rm -f sim/sim45data.cir
 	make -C doc clean
 	make -C mat clean
+	make -C sim clean
 
 .PHONY: all clean
 

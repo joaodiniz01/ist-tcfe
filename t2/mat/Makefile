@@ -1,12 +1,15 @@
 # ---------------------------------------------------------
 # type "make" command in Unix to create report.pdf 
 # ---------------------------------------------------------
+#all: ../doc/octave.log
 
-all: AnaliseTeorica.m
+../doc/octave.log: AnaliseTeorica.m
 	octave $< > $@
 
 clean:
-	@rm -rf *.tex
+	@rm -f *.tex
+	@rm -f *.txt
+	@rm -f *.cir
 	
 .PHONY: clean
 

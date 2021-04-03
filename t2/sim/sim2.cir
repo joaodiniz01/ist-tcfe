@@ -24,15 +24,15 @@ set color4=violet
 set color5=rgb:3/8/0
 set color6=rgb:4/0/0
 
-op
+op1
 
 echo "****************"
 echo  "Operating point"
 echo "****************"
 
-echo  "op_TAB"
+echo  "op1_TAB"
 print all
-echo  "op_END"
+echo  "op1_END"
 
 quit
 .endc

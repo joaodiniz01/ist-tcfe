@@ -24,20 +24,20 @@ set color6=rgb:4/0/0
 
 op
 
-echo "****************"
-echo  "Operating point"
-echo "****************"
+*echo "****************"
+*echo  "Operating point"
+*echo "****************"
 
-echo  "op_TAB"
-print all
-echo  "op_END"
+*echo  "op_TAB"
+*print all
+*echo  "op_END"
 
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
 tran 1e-3 20e-3
 
-hardcopy transient4r.ps v(n6)
+hardcopy ../doc/transient4r.ps v(n6)
 echo transient4r_FIG
 
 echo "********************************************"
@@ -45,7 +45,7 @@ echo  "Transient analysis"
 echo "********************************************"
 tran 1e-3 20e-3
 
-hardcopy transient4s.ps v(n1)
+hardcopy ../doc/transient4s.ps v(n1)
 echo transient4s_FIG
 
 echo "********************************************"
@@ -53,7 +53,7 @@ echo  "Frequency analysis"
 echo "********************************************"
 ac dec 10 0.1 1MEG
 
-hardcopy fresponse.ps db(v(n6)) db(v(n1))
+hardcopy ../doc/fresponse.ps db(v(n6)) db(v(n1))
 echo fresponse_FIG
 
 
