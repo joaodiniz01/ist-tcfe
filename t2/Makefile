@@ -14,8 +14,9 @@ data.txt:
 	sed -i 's/[^0-9.]*//g' mat/data.txt
 
 open:
-	make -C doc
-	cp doc/report.pdf 
+	make -C mat
+	#make -C doc
+	#cp doc/report.pdf 
 	
 clean:
 	@rm -f *.txt
@@ -26,6 +27,7 @@ clean:
 	@rm -f sim/sim3data.cir
 	@rm -f sim/sim45data.cir
 	make -C doc clean
+	make -C mat clean
 
 .PHONY: all clean
 
