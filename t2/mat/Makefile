@@ -10,6 +10,8 @@ clean:
 	@rm -f *.tex
 	@rm -f *.txt
 	@rm -f *.cir
+	@rm -f *.eps
+	@rm -f *.pdf
 	
 .PHONY: clean
 

@@ -39,7 +39,7 @@ echo  "Transient analysis"
 echo "********************************************"
 tran 1e-3 20e-3
 
-hardcopy ../doc/transient3.ps v(n6)
+hardcopy transient3.ps v(n6)
 echo transient3_FIG
 
 

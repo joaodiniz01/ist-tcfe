@@ -134,7 +134,7 @@ Is = I1
 
 % Table
 
-fid = fopen ("node1.tex", "w");
+fid = fopen ("../doc/node1.tex", "w");
 fprintf(fid, "$V_1$ & %e \\\\ \\hline \n", V1);
 fprintf(fid, "$V_2$ & %e \\\\ \\hline \n", V2);
 fprintf(fid, "$V_3$ & %e \\\\ \\hline \n", V3);
@@ -216,7 +216,7 @@ tau = Req*C
 
 % Table
 
-fid = fopen ("node2.tex", "w");
+fid = fopen ("../doc/node2.tex", "w");
 fprintf(fid, "$V_x$ & %e \\\\ \\hline \n", Vx);
 fprintf(fid, "$V_1$ & %e \\\\ \\hline \n", V1);
 fprintf(fid, "$V_2$ & %e \\\\ \\hline \n", V2);
@@ -251,10 +251,12 @@ A = Vx-V8
 t = 0:0.1:20
 V6n = A*exp(-t/tau)
 
+hf = figure ();
 plot(t, V6n)
 xlabel ("t (ms)")
 ylabel ("V6n (V)")
 title ("Natural Solution V6n(t)")
+print (hf, "alinea3.eps", "-depsc");
 
 
 ########################################
@@ -299,7 +301,7 @@ Ib = solutionnodes(8)
 Ic = solutionnodes(9)
 
 % Table
-fid = fopen ("node4.tex", "w");
+fid = fopen ("../doc/node4.tex", "w");
 fprintf(fid, "$V_1$ & %e \\\\ \\hline \n", V1);
 fprintf(fid, "$V_2$ & %e \\\\ \\hline \n", V2);
 fprintf(fid, "$V_3$ & %e \\\\ \\hline \n", V3);
@@ -316,10 +318,12 @@ fase6 = 0 + atan(2*pi*1000*Req*C)
 t =  0:0.1:20;
 V6f = V6_modul*cos((t/1000)*2*1000*pi - fase6);
 
+hf1 = figure ();
 plot(t, V6f)
 xlabel ("t (ms)")
 ylabel ("V6f (V)")
 title ("Forced Solution V6f(t)")
+print (hf1, "alinea4.eps", "-depsc");
 
 
 ########################################
@@ -345,4 +349,6 @@ t2 = -5:0.1:0
 vs_t2 = Vs
 V6_t2 = V6
 
+hf2 = figure ();
 plot(t1, V6_t1, 'b',t1 ,vs_t1, 'r', t2, V6_t2, 'b', t2, vs_t2, 'r')
+print (hf2, "alinea5.eps", "-depsc");

@@ -1,59 +1,9 @@
-\section{Simulation Analysis}
+\section{Simulation analysis}
 \label{sec:simulation}
 
-In this section we will be describing the simulation that we made on a software called NGSpice where we made a script describing the given circuit. After running the script, NGSpice gives us the variables that we are looking for, these variables are the same as the ones we calculated using both the mesh and nodal methods.
-
-\subsection{NGSpice Simulation}
-
-Firstly we’ve added the values for resistors, $V_a$, $I_d$, $K_b$ and $K_c$, from the python script and then we described the circuit based on the circuit below:
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{ngspice.pdf}
-\caption{NGSpice simulation circuit.}
-\label{fig:ngspice}
-\end{figure}
-
-
-After running the script, the results we get using this simulation are organized in the table below.
-
-\begin{table}[H]
-  \centering
-  \begin{tabular}{|l|r|}
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    \input{op_tab}
-  \end{tabular}
-  \label{tab:op}
-\end{table}
-
-All the variables preceded by @ are currents and are expressed in Ampere, the other variables, preceeded by n are the voltages at each node and are expressed in Volt. \par
-Using these voltages at the nodes, we can calculate the variables that were calculated above using both the mesh and nodal methods so we can compare them and see the what could be differences between them. \par
-
-\begin{equation}
-  V_b = n2 - n5 \quad \text{ which equals to } -0.041290V
-  \label{eq18}
-\end{equation}
-
-\begin{equation}
-  V_c = n8 - n5 \quad \text{ which equals to } -7.5564V
-  \label{eq19}
-\end{equation}
-
-As for the currents $I_b$ and $I_c$, we can get them in the NGSpice results by seeing in which resistor the current is that value. $I_b$ is the current that goes through $R_2$ and therefore it is 0.300677$mA$ and $I_c$ is the current that goes through $R_6$ and therefore it is 0.9031846$mA$. \par
-Putting these values in a table so that we can analyse them and compare them more easily we get the following table:
-
-\begin{center}
-  \begin{tabular}{ | c | c | }
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    $V_b$ & -0.041290 \\ \hline 
-    $V_c$ & -7.5564 \\ \hline 
-    $I_b$ & 3.00677e-04 \\ \hline 
-    $I_c$ & 9.031846e-04 \\ 
-    \hline
-  \end{tabular}
-\end{center}
-
-As we can see there are little differences in the last digit of some values. These differences are very small and can be explained with approximations that may have been used in some intermediate steps along the way, either by Octave or by NGSpice, or most probably both.
-
+\subsection{Question 1: }
+\subsection{Question 2: }
+\subsection{Question 3: }
+\subsection{Question 4: }
+\subsection{Question 5: }
 

@@ -1,143 +1,129 @@
 \section{Theoretical Analysis}
 \label{sec:analysis}
 
-In this section, the circuit shown in Figure~\ref{fig:circuito} is analysed
-theoretically, this is, we will be using both the mesh method and the nodal method to calculate the remaining variables ($I_b$, $I_c$, $V_b$ and $V_c$).
-
-\subsection{Mesh Method}
-
-By using Mesh method or loop analysis we analyzed the given circuit splitting it in four meshes with the currents $I_a$ $I_b$ $I_c$ and $I_d$ (given). The direction of each mesh’s current is shown below:
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{malhas.pdf}
-\caption{Mesh method circuit.}
-\label{fig:malhas}
-\end{figure}
-
-It’s important to mention that in resistors $R_3$ and $R_5$ there is the current contribution from two meshes at the same time, as it is shown in the two following equations. \par
-For mesh A, we have:
+\subsection{Question 1: Node Analysis}
+This preliminary analysis of the circuit is the basis of the rest of the work and to do this we used the nodal method in the same way as used in T1. We have the equations: (the nomenclature for all nodes and branches is present in figure 1).\par
+\emph{Node 0 (ground):}
 \begin{equation}
-  V_a = I_a (R_1+R_4)-I_c R_4 + V_b
-  \label{eq1}
-\end{equation}
-For mesh C, we have:
+    \frac{1}{R_1}(V_2-V_1) + \frac{1}{R_4}(V_5-0)- I_d  = 0
+\end{equation}\par
+
+\emph{Node 2:}
 \begin{equation}
-  I_a R_4 - I_c (R_4+R_6+R_7) + V_c = 0
-  \label{eq2}
-\end{equation}
-And then, we have used additional equations, such as:
+    \frac{1}{R_1}(V_1-V_2) + \frac{1}{R_2}(V_3-V_2) + \frac{1}{R_3}(V_5-V_2) = 0
+\end{equation}\par
+
+\emph{Node 3:}
 \begin{equation}
-  V_c = I_c K_c
-  \label{eq3}
-\end{equation}
+    \frac{1}{R_2}(V_2-V_3) + I_b  = 0
+\end{equation}\par
 
+\emph{Node 5:}
 \begin{equation}
-  I_b = V_b K_b
-  \label{eq4}
-\end{equation}
+    \frac{1}{R_3}(V_2-V_5) + \frac{1}{R_5}(V_6-V_5) + \frac{1}{R_4}(0-V_5) - I_d = 0
+\end{equation}\par
 
+\emph{Node 6:}
 \begin{equation}
-  V_b = R_3 (I_a+I_b)
-  \label{eq5}
-\end{equation}
-Both the equations 3 and 4 are given in the original circuit figure. \par
-Using these equations described above, we wrote a simple Octave script so that we could get the remaining values to fully describe the circuit. \par
-The results we got using the mesh method were the following: 
-\begin{center}
-  \begin{tabular}{ | c | c | }
-    \hline    
-    {\bf Name} & {\bf Value [A or V]} \\ \hline
-    %\input{meshtable}
-    \hline
-  \end{tabular}
-\end{center}
-All the variables preceded by I are currents and are expressed in Ampere, the other variables, preceeded by V are voltages and are expressed in Volt.
+    \frac{1}{R_5}(V_5-V_6) - I_b - I_c = 0
+\end{equation}\par
 
-\subsection{Nodal Method}
-
-This method is characterized as a powerful method to compute by using matrix analysis in octave or matlab. Nodal Voltage Analysis uses the nodal equations of Kirchhoff’s first law to find the voltage potentials around the circuit. The nodes numeration is shown below:
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{nos.pdf}
-\caption{Nodal method circuit.}
-\label{fig:nos}
-\end{figure}
-
-The equations used to solve the system were the following:
-
+\emph{Node 7:}
 \begin{equation}
-  \frac{1}{R_2} (V_3-V_4) + \frac{1}{R_1} (V_5-V_4) - V_b \frac{1}{R_3} = 0
-  \label{eq6}
-\end{equation}
+    \frac{1}{R_6}(V_7-0) + I_d  = 0
+\end{equation}\par
 
+\emph{Node 8:}
 \begin{equation}
-  \frac{1}{R_2} (V_4-V_3) + I_b = 0
-  \label{eq7}
-\end{equation}
+    \frac{1}{R_7}(V_7-V_8) - I_d + I_c = 0
+\end{equation}\par
 
+\emph{Additional equation:}
 \begin{equation}
-  \frac{1}{R_5} (V_0-V_2) - I_b = -I_d
-  \label{eq8}
-\end{equation}
+     V_5 - V_8 - K_dI_d = 0
+\end{equation}\par
 
+\emph{Additional equation:}
 \begin{equation}
-  \frac{1}{R_6} (V_6-V_7) - I_c = 0
-  \label{eq9}
-\end{equation}
+     V_2 - V_5 - \frac{I_b}{K_b} = 0
+\end{equation}\par
 
-We also used the following additional equations, as the previous were not enough to solve all the variables.
-
-\begin{equation}
-  V_0 = 0
-  \label{eq10}
-\end{equation}
-
-\begin{equation}
-  V_5 - V_6 = V_a
-  \label{eq11}
-\end{equation}
-
-\begin{equation}
-  V_b - K_c I_c = 0
-  \label{eq12}
-\end{equation}
-
-\begin{equation}
-  -V_0 + V_4 - V_b = 0
-  \label{eq13}
-\end{equation}
-
-\begin{equation}
-  \frac{1}{R_7} (V_1-V_7) + I_c = 0
-  \label{eq14}
-\end{equation}
-
-\begin{equation}
-  -V_b K_b + I_b = 0
-  \label{eq15}
-\end{equation}
-
-\begin{equation}
-  \frac{1}{R_4} (V_0-V_6) + \frac{1}{R_1} (V_4-V_5) - I_c = 0
-  \label{eq16}
-\end{equation}
-
-\begin{equation}
-  V_0 - V_1 - V_c = 0
-  \label{eq17}
-\end{equation}
-
-Similarly to the mesh method we used a simple Octave script to calculate the remaining variables, the results we got using the nodal method were the following: 
+And the results are shown in the following table:
 
 \begin{center}
   \begin{tabular}{ | c | c | }
     \hline    
     {\bf Name} & {\bf Value [A or V]} \\ \hline
-    %\input{nodaltable}
+    \input{node1}
     \hline
   \end{tabular}
 \end{center}
 All the variables preceded by I are currents and are expressed in Ampere, the other variables, preceeded by V are voltages and are expressed in Volt.
+
+
+
+\subsection{Question 2: Equivalent Resistance ($R_{e_q}$)}
+The resolution of this question was based on the suggestion presented. Firstly, we set $V_s =0$ and replaced the capacitor by a voltage source $V_x = V_6 - V_8$ and ran the nodal analysis in order to obtain the current $I_x$ witch is the current supplied by $V_x$.\par
+Then, with the equation: 
+\begin{equation}
+     R_{e_q} = \frac{V_x}{I_x}
+\end{equation}\par
+We obtain the Equivalent resistance. \par 
+The time constant $\tau$ is calculated by doing $\tau=R_{e_q}C$\par
+Basically, the procedure was based on \emph{Thévenin} theorem. Since, the capacitor was replaced by a Voltage source witch terminals have the same difference of potential as $V_6 - V_8$ in Question 1, this is a known variable and $I_x$ can also be obtainned by running the nodal method with $V_s = 0$. We needed to do this because there is no easiest way to calculate the Equivalent Resistance in a circuit where there are resistances in paralell, series and a capacitor.
+
+The results:
+
+\begin{center}
+  \begin{tabular}{ | c | c | }
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{node2}
+    \hline
+  \end{tabular}
+\end{center}
+
+
+\subsection{Question 3: Natural solution $v_{6_t}(t)$}
+The natural solution $v_{6_t}(t)$ in the interval [0,20]ms calculating:
+\begin{equation}
+     v_{6_n} = {V_x-V_8}e^{\frac{-t}{\tau}}
+\end{equation}\par
+Where $V_x$ is the same as in question 1 ($t<0$).
+By doing this, the plot obtained is the one shown below:
+
+
+\subsection{Question 4: Forced solution $v_{6_t}(t)$ (f=1Khz)}
+In this question, we have used a phasor voltage source $V_s = 1$, so:
+\begin{equation}
+     v_s = {V_s}e^{-i\frac{\pi}{2}}
+\end{equation}\par
+Then, replacing C with  impedance $Z_c$ and running the nodal analysis to determine the phasor voltages in all nodes we have the following results:\par
+
+\begin{center}
+  \begin{tabular}{ | c | c | }
+    \hline    
+    {\bf Name} & {\bf Value [A or V]} \\ \hline
+    \input{node4}
+    \hline
+  \end{tabular}
+\end{center}
+
+We have calculated the module of $V_6$ with "abs" Octave's function. Then, the phase is calculated in the expression:
+\begin{equation}
+     phase = 0 + arctan({2\pi}{R_{e_q}}{C})
+\end{equation}\par
+
+Where $R_{e_q}$ and $C$ are the equivalent resistance and the Capacitor's capacitance, respectively.
+
+And, finally, the forced solution is given by the expression:
+\begin{equation}
+     V_{6_f}= V_6cos({t}{2\pi} - phase)
+\end{equation}\par
+where $V_6$ is the module value, calculated in the previous expression.
+
+
+\subsection{Question 5: Final solution $v_{6_t}(t)$ }
 
 
 
