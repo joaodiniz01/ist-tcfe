@@ -30,9 +30,9 @@ echo "****************"
 echo  "Operating point"
 echo "****************"
 
-echo  "op1_TAB"
+echo  "op2_TAB"
 print all
-echo  "op1_END"
+echo  "op2_END"
 
 quit
 .endc

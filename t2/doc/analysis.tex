@@ -62,14 +62,14 @@ All the variables preceded by I are currents and are expressed in Ampere, the ot
 
 
 
-\subsection{Question 2: Equivalent Resistance ($R_{e_q}$)}
+\subsection{Question 2: Equivalent Resistance ($R_{eq}$)}
 The resolution of this question was based on the suggestion presented. Firstly, we set $V_s =0$ and replaced the capacitor by a voltage source $V_x = V_6 - V_8$ and ran the nodal analysis in order to obtain the current $I_x$ witch is the current supplied by $V_x$.\par
 Then, with the equation: 
 \begin{equation}
-     R_{e_q} = \frac{V_x}{I_x}
+     R_{eq} = \frac{V_x}{I_x}
 \end{equation}\par
 We obtain the Equivalent resistance. \par 
-The time constant $\tau$ is calculated by doing $\tau=R_{e_q}C$\par
+The time constant $\tau$ is calculated by doing $\tau=R_{eq}C$\par
 Basically, the procedure was based on \emph{Thévenin} theorem. Since, the capacitor was replaced by a Voltage source witch terminals have the same difference of potential as $V_6 - V_8$ in Question 1, this is a known variable and $I_x$ can also be obtainned by running the nodal method with $V_s = 0$. We needed to do this because there is no easiest way to calculate the Equivalent Resistance in a circuit where there are resistances in paralell, series and a capacitor.
 
 The results:
@@ -84,10 +84,10 @@ The results:
 \end{center}
 
 
-\subsection{Question 3: Natural solution $v_{6_t}(t)$}
-The natural solution $v_{6_t}(t)$ in the interval [0,20]ms calculating:
+\subsection{Question 3: Natural solution $v_{6t}(t)$}
+The natural solution $v_{6t}(t)$ in the interval [0,20]ms calculating:
 \begin{equation}
-     v_{6_n} = {V_x-V_8}e^{\frac{-t}{\tau}}
+     v_{6n} = {V_x-V_8}e^{\frac{-t}{\tau}}
 \end{equation}\par
 Where $V_x$ is the same as in question 1 ($t<0$).
 By doing this, the plot obtained is the one shown below:
@@ -99,7 +99,7 @@ By doing this, the plot obtained is the one shown below:
 \end{figure}
 
 
-\subsection{Question 4: Forced solution $v_{6_t}(t)$ (f=1Khz)}
+\subsection{Question 4: Forced solution $v_{6t}(t)$ (f=1Khz)}
 In this question, we have used a phasor voltage source $V_s = 1$, so:
 \begin{equation}
      v_s = {V_s}e^{-i\frac{\pi}{2}}
@@ -115,19 +115,6 @@ Then, replacing C with  impedance $Z_c$ and running the nodal analysis to determ
   \end{tabular}
 \end{center}
 
-We have calculated the module of $V_6$ with "abs" Octave's function. Then, the phase is calculated in the expression:
-\begin{equation}
-     phase = 0 + arctan({2\pi}{R_{e_q}}{C})
-\end{equation}\par
-
-Where $R_{e_q}$ and $C$ are the equivalent resistance and the Capacitor's capacitance, respectively.
-
-And, finally, the forced solution is given by the expression:
-\begin{equation}
-     V_{6_f}= V_6cos({t}{2\pi} - phase)
-\end{equation}\par
-where $V_6$ is the module value, calculated in the previous expression.
-
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../mat/alinea4.pdf}
 \caption{Plot alinea 4.}
@@ -135,7 +122,21 @@ where $V_6$ is the module value, calculated in the previous expression.
 \end{figure}
 
 
-\subsection{Question 5: Final solution $v_{6_t}(t)$ }
+We have calculated the module of $V_6$ with "abs" Octave's function. Then, the phase is calculated in the expression:
+\begin{equation}
+     phase = 0 + arctan({2\pi}{R_{eq}}{C})
+\end{equation}\par
+
+Where $R_{eq}$ and $C$ are the equivalent resistance and the Capacitor's capacitance, respectively.
+
+And, finally, the forced solution is given by the expression:
+\begin{equation}
+     V_{6f}= V_6cos({t}{2\pi} - phase)
+\end{equation}\par
+where $V_6$ is the module value, calculated in the previous expression.
+
+
+\subsection{Question 5: Final solution $v_{6t}(t)$ }
 
 
 
