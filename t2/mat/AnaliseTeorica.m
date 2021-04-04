@@ -310,7 +310,8 @@ fprintf(fid, "$V_3$ & %e \\\\ \\hline \n", V3);
 fprintf(fid, "$V_5$ & %e \\\\ \\hline \n", V5);
 fprintf(fid, "$V_6$ & %e \\\\ \\hline \n", V6_ph);
 fprintf(fid, "$V_7$ & %e \\\\ \\hline \n", V7);
-fprintf(fid, "$V_8$ & %e \\\\ \n", V8);
+fprintf(fid, "$V_8$ & %e \\\\ \\hline \n", V8);
+fprintf(fid, "$v_c$ & %e \\\\ \n", vc);
 fclose (fid);
 
 V6_modul = abs(V6_ph)
