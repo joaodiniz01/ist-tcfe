@@ -85,11 +85,28 @@ The results:
 
 
 \subsection{Question 3: Natural solution $v_{6t}(t)$}
-The natural solution $v_{6t}(t)$ in the interval [0,20]ms calculating:
+The natural solution $v_{6t}(t)$ can be obtained in the interval $[0,20]ms$, by doing: \par
 \begin{equation}
-     v_{6n} = {V_x-V_8}e^{\frac{-t}{\tau}}
+     V_6(t) = V_{6n}(t) + V_{6f}(t)
 \end{equation}\par
-Where $V_x$ is the same as in question 1 ($t<0$).
+Where:\par
+\begin{equation}
+     V_{6n}(t) = {A}e^{\frac{-t}{\tau}}
+\end{equation}\par
+And $v_{6f}(t=0s)$ because $v_s(t=0s)=0$\par
+Then:
+\begin{equation}
+     V_6(0) = V_x(0) + V_8(0)
+\end{equation}\par
+So ($v_8(t=0s)=0$):
+\begin{equation}
+     V_6(0) = V_x(0) 
+\end{equation}\par
+Finally, we get the natural solution:
+\begin{equation}
+     V_x =  {A}e^{\frac{-t}{\tau}}
+\end{equation}\par
+
 By doing this, the plot obtained is the one shown below:
 
 \begin{figure}[H] \centering
@@ -99,11 +116,17 @@ By doing this, the plot obtained is the one shown below:
 \end{figure}
 
 
-\subsection{Question 4: Forced solution $v_{6t}(t)$ (f=1Khz)}
-In this question, we have used a phasor voltage source $V_s = 1$, so:
+\subsection{Question 4: Forced solution $v_{6f}(t)$ (f=1Khz)}
+In this question, we have used a phasor voltage source $V_s = 1$, since $\phi = 0$, we get:
 \begin{equation}
-     v_s = {V_s}e^{-i\frac{\pi}{2}}
+     v_s = sen(2\pi ft) => v_s = -(sen(\phi_s) + icos(\phi_s))
 \end{equation}\par
+So, $v_s=-i$.
+\begin{equation}
+     Z_c = \frac{1}{j\omega c}
+\end{equation}\par
+Where $\omega= 2\pi f$ and $f= 1000Hz$.\par
+
 Then, replacing C with  impedance $Z_c$ and running the nodal analysis to determine the phasor voltages in all nodes we have the following results:\par
 
 \begin{center}
@@ -115,28 +138,74 @@ Then, replacing C with  impedance $Z_c$ and running the nodal analysis to determ
   \end{tabular}
 \end{center}
 
+We have calculated the module of $V_6$ with "abs" Octave's function. Then, the phase is calculated in the expression:
+\begin{equation}
+     phase_6 = 0 + arctan({2\pi f}{R_{eq}}{C})
+\end{equation}\par
+
+Where $R_{eq}$ and $C$ are the equivalent resistance and the Capacitor's capacitance, respectively.
+
+And, finnaly, the forced solution is given by the expression:
+\begin{equation}
+     V_{6f}= V_6cos({2\pi f}{t} - phase_6)
+\end{equation}\par
+and the following plot:\par
+
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../mat/alinea4.pdf}
 \caption{Forced solution $v_{6t}(t)$}
 \label{fig:plot4}
 \end{figure}
 
-
-We have calculated the module of $V_6$ with "abs" Octave's function. Then, the phase is calculated in the expression:
-\begin{equation}
-     phase = 0 + arctan({2\pi}{R_{eq}}{C})
-\end{equation}\par
-
-Where $R_{eq}$ and $C$ are the equivalent resistance and the Capacitor's capacitance, respectively.
-
-And, finally, the forced solution is given by the expression:
-\begin{equation}
-     V_{6f}= V_6cos({t}{2\pi} - phase)
-\end{equation}\par
 where $V_6$ is the module value, calculated in the previous expression.
 
 
-\subsection{Question 5: Final solution $v_{6t}(t)$ }
+
+\subsection{Question 5: Final solution $v_{6}(t)$ }
+The final total solution is given by:
+\begin{equation}
+     V_6(t) = V_{6n}(t) + V_{6f}(t)
+\end{equation}\par
+Considering the time period of $[0 ; 20]ms$: \par $v_s = sin(2\pi ft)$ and $v_6(t)= v_{6n}(t) + v_{6f}(t)$
+Considering the time period of $[-5,0]ms$ (In this period of time there is no variation of $v_s$ and so, $v_6$ is also constant, as seen before):\par $v_s = V_s (initial value)$ and $v_6(t) =V_6$.\par
+The results ($v_6(t) - blue, v_6 (t) - red$):
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../mat/alinea5.pdf}
+\caption{Final solution $v_{6}(t)$}
+\label{fig:plot5}
+\end{figure}
+
+\subsection{Question 6: Frequency response}
+The main focus of this procedure was to determine the frequency response $v_6(f)$, $v_c(f)$ and $v_s(f)$ for a frequency range of 0.1Hz to 1Mhz (using logarithmic scale for f). \par
+As mention before, the impedance expression is:
+\begin{equation}
+     Z_c = \frac{1}{j\omega c}
+\end{equation}\par
+Then, we ran the nodal analysis (like in question 4) for each value of frequency determining the phaser voltage in each node, which allowed us to determine the $v_6(f)$, $v_c(f) = v_6(f) - v_8(f)$ and $v_s(f)$ values. As seen before, the phasor voltage $v_s$ value is independet from he frequency and so, it is constant ($v_s = -i$). \par
+We have used the magnitude values in dB and phase in degrees, in order to represent the results:\par
+\begin{equation}
+     magnitude (dB) = 20log_{10}(abs(x))
+\end{equation}\par
+And,
+\begin{equation}
+     phase (degrees) = \frac{180}{\pi}angle(x)
+\end{equation}\par
+where x is the phasor voltage.\par
+The $v_s$ is the \textcolor{blue}{blue} line, $v_c$ \textcolor{green}{green} and the $v_6$ the \textcolor{red}{red} one.\par
+The results are shown in the following plots:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../mat/alinea61.pdf}
+\caption{Magnitude of phasor voltages ($dB$)}
+\label{fig:plot6}
+\end{figure}
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../mat/alinea62.pdf}
+\caption{Phase of phasor voltages (degrees)}
+\label{fig:plot7}
+\end{figure}
+
 
 
 
