@@ -304,14 +304,14 @@ vc = solutionnodes(7)
 
 % Table
 fid = fopen ("../doc/node4.tex", "w");
-fprintf(fid, "$V_1$ & %e \\\\ \\hline \n", real(V1), imag(V1), "i");
-fprintf(fid, "$V_2$ & %e \\\\ \\hline \n", V2);
-fprintf(fid, "$V_3$ & %e \\\\ \\hline \n", V3);
-fprintf(fid, "$V_5$ & %e \\\\ \\hline \n", V5);
-fprintf(fid, "$V_6$ & %e \\\\ \\hline \n", V6_ph);
-fprintf(fid, "$V_7$ & %e \\\\ \\hline \n", V7);
-fprintf(fid, "$V_8$ & %e \\\\ \\hline \n", V8);
-fprintf(fid, "$v_c$ & %e \\\\ \n", vc);
+fprintf(fid, "$V_1$ & %e + %e i\\\\ \\hline \n", real(V1), imag(V1));
+fprintf(fid, "$V_2$ & %e + %e i\\\\ \\hline \n", real(V2), imag(V2));
+fprintf(fid, "$V_3$ & %e + %e i\\\\ \\hline \n", real(V3), imag(V3));
+fprintf(fid, "$V_5$ & %e + %e i\\\\ \\hline \n", real(V5), imag(V5));
+fprintf(fid, "$V_6$ & %e + %e i\\\\ \\hline \n", real(V6_ph), imag(V6_ph));
+fprintf(fid, "$V_7$ & %e + %e i\\\\ \\hline \n", real(V7), imag(V7));
+fprintf(fid, "$V_8$ & %e + %e i\\\\ \\hline \n", real(V8), imag(V8));
+fprintf(fid, "$v_c$ & %e + %e i\\\\ \n", real(vc), imag(vc));
 fclose (fid);
 
 V6_modul = abs(V6_ph)
