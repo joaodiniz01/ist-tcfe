@@ -304,7 +304,7 @@ vc = solutionnodes(7)
 
 % Table
 fid = fopen ("../doc/node4.tex", "w");
-fprintf(fid, "$V_1$ & %e \\\\ \\hline \n", V1);
+fprintf(fid, "$V_1$ & %e \\\\ \\hline \n", real(V1), imag(V1));
 fprintf(fid, "$V_2$ & %e \\\\ \\hline \n", V2);
 fprintf(fid, "$V_3$ & %e \\\\ \\hline \n", V3);
 fprintf(fid, "$V_5$ & %e \\\\ \\hline \n", V5);
@@ -321,7 +321,7 @@ t =  0:0.1:20;
 V6f = V6_modul*cos((t/1000)*2*1000*pi - fase6);
 
 hf1 = figure ();
-plot(t, -V6f)
+plot(t, V6f)
 xlabel ("t (ms)")
 ylabel ("V6f (V)")
 title ("Forced Solution V6f(t)")

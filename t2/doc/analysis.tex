@@ -70,7 +70,7 @@ Then, with the equation:
 \end{equation}\par
 We obtain the Equivalent resistance. \par 
 The time constant $\tau$ is calculated by doing $\tau=R_{eq}C$\par
- Since the capacitor was replaced by a Voltage source witch terminals have the same difference of potential as $V_6 - V_8$ in Question 1, this is a known variable that corresponds to $V_x$ ($V_{eq}$). $I_x$ can also be obtainned by running the nodal method with $V_s = 0$. We needed to do this because there is no faster way to calculate the Equivalent Resistance in a circuit where there are resistances in paralell, in series and a capacitor. Basically, the procedure was based on \emph{Thévenin} theorem to obtain $V_{eq}$. By doing this, we have $V_{eq}=R_{eq}I_x$, where $R_{eq}$ is the only unknown variable. \par
+ Since the capacitor was replaced by a Voltage source witch terminals have the same difference of potential as $V_6 - V_8$ in Question 1, this is a known variable that corresponds to $V_x$ ($V_{eq}$). $I_x$ can also be obtainned by running the nodal method with $V_s = 0$. We needed to do this because there is no faster way to calculate the Equivalent Resistance in a circuit where there are resistances in paralell, in series and a capacitor. Basically, the procedure was based on \emph{Thévenin} theorem to obtain $R_{eq}$which is equal to$(V_{x}-V_{s})/I_{x} $. By doing this, we have $V_{x}=R_{eq}I_x$, where $R_{eq}$ is the only unknown variable. \par
 
 The results:
 
@@ -168,7 +168,7 @@ The final total solution is given by:
 \end{equation}\par
 Considering the time period of $[0 ; 20]ms$: \par $v_s = sin(2\pi ft)$ and $v_6(t)= v_{6n}(t) + v_{6f}(t)$
 Considering the time period of $[-5,0]ms$ (In this period of time there is no variation of $v_s$ and so, $v_6$ is also constant, as seen before):\par $v_s = V_s (initial value)$ and $v_6(t) =V_6$.\par
-The results ($v_6(t) - blue, v_6 (t) - red$):
+The results ($v_6(t)$ - \textcolor{blue}{blue}, $v_s (t)$ - \textcolor{red}{red}):
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../mat/alinea5.pdf}
 \caption{Final solution $v_{6}(t)$}
@@ -192,7 +192,7 @@ And,
 \end{equation}\par
 where $x$ is the phasor voltage.\par
 The $v_s$ is the \textcolor{blue}{blue} line, $v_c$ \textcolor{green}{green} and the $v_6$ the \textcolor{red}{red} one.\par
-The results are shown in the following plots:
+The results are shown in the following plots: \par
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../mat/alinea61.pdf}
@@ -205,6 +205,10 @@ The results are shown in the following plots:
 \caption{Phase of phasor voltages (degrees)}
 \label{fig:plot7}
 \end{figure}
+
+Analysing the plots, we realised that $v_s$ is a constant value in the plot since it equals $v_s= -i$ which represents 0dB (because logaritm's magnitude is 0). Also, the phase is constant. \par
+The values of $v_c$ and $v_6$ aren't constant. The logarithm of $v_6$ goes from positive values to negative values because it becomes less than 1. \par
+The plot of $v_6$ doesn't not equal the plot of $v_c$ because $v_c=v_6 - v_8$ and $v_8$ is not 0.
 
 
 
