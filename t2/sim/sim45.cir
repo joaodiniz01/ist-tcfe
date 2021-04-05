@@ -35,7 +35,7 @@ op
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
-tran 1e-3 20e-3
+tran 1e-5 20e-3
 
 hardcopy transient4r.ps v(n6)
 echo transient4r_FIG
@@ -43,7 +43,7 @@ echo transient4r_FIG
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
-tran 1e-3 20e-3
+tran 1e-5 20e-3
 
 hardcopy transient4s.ps v(n1)
 echo transient4s_FIG
