@@ -138,10 +138,7 @@ Then, replacing C with  impedance $Z_c$ and running the nodal analysis to determ
   \end{tabular}
 \end{center}
 
-We have calculated the module of $V_6$ with "abs" Octave's function. Then, the phase is calculated in the expression:
-\begin{equation}
-     phase_6 = 0 + arctan({2\pi f}{R_{eq}}{C})
-\end{equation}\par
+We have calculated the module of $V_6$ with "abs" Octave's function. Then, the phase is calculated with the angle function of octave by doing (-angle(phasor voltage 6)). \par
 
 Where $R_{eq}$ and $C$ are the equivalent resistance and the Capacitor's capacitance, respectively.
 
