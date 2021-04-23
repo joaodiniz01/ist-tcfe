@@ -1,0 +1,64 @@
+*
+* NGSPICE simulation script
+* BJT amp with feedback
+*
+
+* forces current values to be saved
+.options savecurrents
+
+*Circuit description
+
+*AC In and transformer description
+VIN n1 0 SIN(0 230 50 0 0)
+F1 n1 0 E2 17
+E2 n2 0 n1 0 0.058824
+
+*Envelope Detector
+D1 n2 n3 Default
+R1 n3 0 50k
+C0 n3 0 1u
+
+*Voltage Regulator
+R2 n3 n4 1k
+D2 n4 n5 Default
+D3 n5 n6 Default
+D4 n6 0 Default
+
+
+.model Default D
+*.model P2model NPN(Bf=200, CJE=12pF, CJC=2pF)
+
+.control
+
+*makes plots in color
+set hcopypscolor=0
+set color0=white
+set color1=black
+set color2=red
+set color3=blue
+set color4=violet
+set color5=rgb:3/8/0
+set color6=rgb:4/0/0
+
+op
+
+echo "****************"
+echo  "Operating point"
+echo "****************"
+
+echo  "op1_TAB"
+print all
+echo  "op1_END"
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-5 2e-1
+
+hardcopy transientsimples.ps v(n3)
+echo transientsimples_FIG
+
+quit
+.endc
+
+.end
