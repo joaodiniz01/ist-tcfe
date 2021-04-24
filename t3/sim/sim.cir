@@ -50,6 +50,7 @@ D24 n24 n8 Default
 *ripple = max(v(n4)-v(n8)) - min(v(n4)-v(n8))
 *average = avg(v(n4)-v(n8))
 
+
 .model Default D
 *.model P2model NPN(Bf=200, CJE=12pF, CJC=2pF)
 
@@ -67,37 +68,37 @@ set color6=rgb:4/0/0
 
 op
 
-echo "****************"
-echo  "Operating point"
-echo "****************"
+
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 5e-5 2e-1 2e-2
+
+hardcopy transient1.ps v(n4)-v(n8) mean(v(n4)-v(n8)) 
+echo transient1_FIG
 
 echo  "op1_TAB"
-print all
+print mean(v(n4)-v(n8))
+print maximum(v(n4)-v(n8))-minimum(v(n4)-v(n8))
+*print all
 echo  "op1_END"
 
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
-tran 5e-5 2e-1
+tran 5e-5 2e-1 2e-2
 
-hardcopy transientfinal.ps v(n4)-v(n8)
-echo transientfinal_FIG
-
-echo "********************************************"
-echo  "Transient analysis"
-echo "********************************************"
-tran 5e-5 2e-1
-
-hardcopy transientenvelope.ps v(n7)-v(n8)
-echo transientenvelope_FIG
+hardcopy transient2.ps v(n7)-v(n8) v(n4)-v(n8) 0
+echo transient2_FIG
 
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
-tran 5e-5 2e-1
+tran 5e-5 2e-1 2e-2
 
-hardcopy transient5.ps v(n4)-v(n8)-12
-echo transient5_FIG
+hardcopy transient3.ps v(n4)-v(n8)-12
+echo transient3_FIG
 
 quit
 .endc
