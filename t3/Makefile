@@ -16,8 +16,8 @@ all: open
 open:
 	#make -C mat
 	make -C sim
-	#make -C doc
-	#cp doc/report.pdf .
+	make -C doc
+	cp doc/report.pdf .
 	
 clean:
 	@rm -f *.txt
