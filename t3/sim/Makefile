@@ -16,10 +16,6 @@ ngspice: ../doc/ngspice.log
 	
 	
 clean:
-	@rm -f sim1data.cir
-	@rm -f sim2data.cir
-	@rm -f sim3data.cir
-	@rm -f sim45data.cir
 	@rm -f *.tex
 	@rm -f *.ps
 	@rm -f *.pdf

@@ -22,9 +22,6 @@ clean:
 	@rm -rf *.aux *.bbl *.blg *.glg *.glo *.gls *.ilg *.ist *.lof
 	@rm -rf *.log *.lot *.nlo *.nls *.out *.toc *~ *.*% ./*.pdf ./*.ps
 	@rm -rf *_tab.tex octave-workspace *.eps
-	#@rm -f node1.tex
-	#@rm -f node2.tex
-	#@rm -f node4.tex
 
 .PHONY: all clean ngspice octave
 

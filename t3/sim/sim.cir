@@ -85,6 +85,7 @@ echo  "outros_TAB"
 print mean(v(n5)-v(n3))
 print maximum(v(n5)-v(n3))-minimum(v(n5)-v(n3))
 print mean(I(V0))
+print maximum(I(V0))
 print mean(v(n3))
 print maximum(v(n4)-v(n3))
 print minimum(v(n6)-v(n5))
