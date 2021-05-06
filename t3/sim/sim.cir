@@ -45,8 +45,8 @@ D21 n21 n22 Default
 D22 n22 n23 Default
 D23 n23 n24 Default
 D24 n24 n25 Default
-D25 n25 n26 Default
-V0 n26 n3 0
+D25 n25 n3 Default
+*V0 n26 n3 0
 
 .model Default D
 
@@ -126,6 +126,10 @@ tran 5e-5 2e-1 18e-2
 
 hardcopy transient5.ps v(n5)-v(n3)-12 mean(v(n5)-v(n3)-12)
 echo transient5_FIG
+
+echo  "meanv012_TAB"
+print mean(v(n5)-v(n3)-12)
+echo  "meanv012_END"
 
 quit
 

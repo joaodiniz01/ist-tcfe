@@ -63,14 +63,24 @@ The result we got is in the table below.
 \end{table}
 
 \subsection{$v_0 - 12$ plot}
-Lastly, we plotted $v_0 - 12$, which corresponds to the output AC component plus the DC deviation. \par
-The plot can be seen in the image below.
+Lastly, we plotted $v_0 - 12$, which corresponds to the output AC component plus the DC deviation, and calculated the deviation, using the mean value. \par
+The plot can be seen in the image below as well as the deviation in the table below. \par
 
 \begin{figure}[H] \centering
 \includegraphics[width=0.7\linewidth]{../sim/transient5.pdf}
 \caption{Output AC component + DC deviation.}
 \label{fig:transient5}
 \end{figure}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{meanv012_tab}
+  \end{tabular}
+  \label{tab:meanv012}
+\end{table}
 
 
 

@@ -2,47 +2,23 @@ close all
 clear all
 f=50;
 w=2*pi*f;
-R=52e3
-C=20e-6
+C=21e-6
 
-n=14
+n=16
 A = 230/n;
 
 #Ngspice
-Von = 11.99970/19
-
-A = 15.06284
-#A = A - 2*Von
-
-
-%Rectified
-t=linspace(0, 200e-3, 1000);
-
-vS=A*cos(w*t);
-vret = zeros(1, length(t));
-
-for i=1:length(t)
-  if (vS(i) > 0)
-    vret(i) = vS(i);
-  else
-    vret(i) = 0;
-  endif
-endfor
-#figure 
-#plot(t*1000, vret)
+Von = 12.00025/21
+R3 = 27.3e3
+rd = 65.7894736842105
 
 %envelope detetor
-t=linspace(0, 20e-3, 200);
+t=linspace(0, 10e-3, 200);
+A = A - 2*Von
 vS=A*cos(w*t);
-vret = zeros(1, length(t));
+vret = abs(vS)
 
-for i=1:length(t)
-  if (vS(i) > 0)
-    vret(i) = vS(i);
-  else
-    vret(i) = 0;
-  endif
-endfor
+R = (R3 + 23*rd);
 
 tOFF = (1/w) * atan(1/(w*R*C))
 vOnexp = A*cos(w*tOFF)*exp(-((t-tOFF)/(R*C)));
@@ -77,20 +53,21 @@ ylabel ("V[volt]")
 legend("envelope")
 print ("envelope.eps", "-depsc");
 
-Vs = (max(vO)+min(vO))/2;
+Vs = (max(vO)+min(vO))/2
 
 %voltage regulator circuit
-R3 = 7.26e3
+R3 = 27.3e3
 vsr = vO - Vs;
 
 ##Ngspice
-##Id = 4.052251e-4
-##rd = Von/(Id*exp(Vs/Von))
-##rd_n = 19*rd
-rd_n = 1241
+##Is = 9e-4
+##Vd = 25e-3
+##rd = Vd/(Is*exp(Von/Vd))
+##rd_nd = 19*rd
+rd_n = rd*21;
 vOr = (rd_n/(rd_n + R3)).*vsr;
 
-Vdc = 19*Von + vOr;
+Vdc = 21*Von + vOr;
 Vdc_m = (max(Vdc)+min(Vdc))/2;
 Vdc_O = Vdc_m - 12
 
@@ -123,12 +100,9 @@ legend("ripple")
 print ("ripple.eps", "-depsc");
 
 %Merit
-R = 65e3
-C = 20e-6
-R3 = 7.26e3
-cost_R = (R + R3)/1000
+cost_R = R3/1000
 cost_C = C/(1e-6)
-cost_d = 0.1*23
+cost_d = 0.1*25
 cost = cost_R + cost_C + cost_d
 M = 1/(cost*(vripple + Vdc_O + 1e-6))
 
