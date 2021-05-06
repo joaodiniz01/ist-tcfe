@@ -10,8 +10,8 @@
 
 *AC In and transformer description
 VIN n1 0 SIN(0 230 50 0 0)
-F1 n1 0 E2 14
-E2 n2 0 n1 0 0.071429
+F1 n1 0 E2 16
+E2 n2 0 n1 0 0.0625
 
 *Diodos manhosos
 D1 n2 n4 Default
@@ -20,11 +20,11 @@ D3 n3 0 Default
 D4 n3 n2 Default
 
 *Envelope Detector
-R1 n4 n3 65k
-C0 n4 n3 20u
+*R1 n4 n3 65k
+C0 n4 n3 21u
 
 *Voltage Regulator
-R2 n4 n5 7.26k
+R2 n4 n5 27.3k
 D5 n5 n6 Default
 D6 n6 n7 Default
 D7 n7 n8 Default
@@ -44,7 +44,9 @@ D20 n20 n21 Default
 D21 n21 n22 Default
 D22 n22 n23 Default
 D23 n23 n24 Default
-V0 n24 n3 0
+D24 n24 n25 Default
+D25 n25 n26 Default
+V0 n26 n3 0
 
 .model Default D
 
@@ -68,7 +70,7 @@ set color6=rgb:4/0/0
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
-tran 5e-5 2e-1 2e-2
+tran 5e-5 2e-1 18e-2
 
 hardcopy transient1.ps v(n5)-v(n3) mean(v(n5)-v(n3))
 echo transient1_FIG
@@ -89,13 +91,14 @@ print maximum(I(V0))
 print mean(v(n3))
 print maximum(v(n4)-v(n3))
 print minimum(v(n6)-v(n5))
+print mean(v(n5)-v(n3)-12)
 *print all
 echo  "outros_END"
 
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
-tran 5e-5 2e-1 2e-2
+tran 5e-5 2e-1 18e-2
 
 hardcopy transient2.ps v(n4)-v(n3)
 echo transient2_FIG
@@ -103,7 +106,7 @@ echo transient2_FIG
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
-tran 5e-5 2e-1 2e-2
+tran 5e-5 2e-1 18e-2
 
 hardcopy transient3.ps v(n5)-v(n3) 
 echo transient3_FIG
@@ -111,7 +114,7 @@ echo transient3_FIG
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
-tran 5e-5 2e-1 2e-2
+tran 5e-5 2e-1 18e-2
 
 hardcopy transient4.ps v(n4)-v(n3) v(n5)-v(n3) 0
 echo transient4_FIG
@@ -119,9 +122,9 @@ echo transient4_FIG
 echo "********************************************"
 echo  "Transient analysis"
 echo "********************************************"
-tran 5e-5 2e-1 2e-2
+tran 5e-5 2e-1 18e-2
 
-hardcopy transient5.ps v(n5)-v(n3)-12
+hardcopy transient5.ps v(n5)-v(n3)-12 mean(v(n5)-v(n3)-12)
 echo transient5_FIG
 
 quit

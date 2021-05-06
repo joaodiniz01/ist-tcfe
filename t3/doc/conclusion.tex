@@ -1,12 +1,9 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Summing up, in this laboratory assignment (T2) we have made both theoretical analysis as well as simulations of several different but similar and correlated circuits. \par
-The results obtained in both analysis were either put in a table or plotted in order to make comparations between the theoretical and simulation analysis.
-Up untill the simulation's question 4, the results are either the exact same or have very little differences on the last decimal places and so they are negligible, the explanation for this is that we studied a very simple circuit containing only linear components. If the components used were more complex, the case would not be the same and we could detect real differences between the values calculated and simulated. \par
-Comparing figure 17 and figure 18, the theoretical value is based on a simplification when the circuit contribuition is resumed to $R_{eq}$ and, the NGspice result is based on all the actual contributions of the circuit. Thus in the figure 18 the signal is going to be a perfect sinusoidal signal while the figure 17 displays an imperfect signal. \par
-Lastly, for the same reasons of figure 17 and 18, there are little differences between plots in both figures. \par
-That being said we would like to end this report by presenting both the theoretical and simulation results side by side in order to easily compare the results. \par
+Summing up, this laboratory provided us the opportunity to understand how the envelope detector and voltage regulator circuits work and, also, how to improve their efficieny.\par
+Finally, we are going to compare the results from simulation and theoretical analysis side by side: \par
+%compararações
 
 \begin{center}
   \begin{tabular}{ | c | c | }
@@ -18,23 +15,62 @@ That being said we would like to end this report by presenting both the theoreti
 \end{center}
 
 \begin{figure}[H]
-    \minipage{0.50\textwidth}
-      \centering
-      \begin{tabular}{ | c | c | }
-      \hline    
-      {\bf Name} & {\bf Value [A or V]} \\ \hline
-      %\input{node1}
-      \hline
-      \end{tabular}
-      \caption{Theoretical Question 1}
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../mat/outputdc.pdf}
+      \caption{Theoretical Output Voltage Level}
     \endminipage\hfill
-    \minipage{0.50\textwidth}
-      \centering
-      \begin{tabular}{ | c | c | }
-      \hline    
-      {\bf Name} & {\bf Value [A or V]} \\ \hline
-      %\input{op1_tab}
-      \end{tabular}
-      \caption{Simulation Question 1}
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../sim/transient1.pdf}
+      \caption{Simulation Output Voltage Level}
     \endminipage\hfill
 \end{figure}
+
+\begin{figure}[H]
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../mat/ripple.pdf}
+      \caption{Theoretical Ripple}
+    \endminipage\hfill
+    \minipage{0.60\textwidth}
+      \centering
+      \begin{tabular}{ | c | c | }
+      \hline    
+      {\bf Ripple} & {\bf Value [V]} \\ \hline
+      \input{ripple_tab}
+      \end{tabular}
+      \caption{Simulation Ripple}
+    \endminipage\hfill
+\end{figure}
+
+\begin{figure}[H]
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../mat/envelope.pdf}
+      \caption{Theoretical Envelope Detector Voltage Level}
+    \endminipage\hfill
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../sim/transient2.pdf}
+      \caption{Simulation Envelope Detector Voltage Level}
+    \endminipage\hfill
+\end{figure}
+
+\begin{figure}[H]
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../mat/outputdc.pdf}
+      \caption{Theoretical Voltage Regulator Voltage Level}
+    \endminipage\hfill
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../sim/transient3.pdf}
+      \caption{Simulation Voltage Regulator Voltage Level}
+    \endminipage\hfill
+\end{figure}
+
+\begin{figure}[H]
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../mat/v012.pdf}
+      \caption{Theoretical $v_0-12$ Voltage Level}
+    \endminipage\hfill
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../sim/transient5.pdf}
+      \caption{Simulation $v_0-12$ Voltage Level}
+    \endminipage\hfill
+\end{figure}
+
