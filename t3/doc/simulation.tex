@@ -2,9 +2,9 @@
 \label{sec:simulation}
 
 \subsection{Simulating the AC/DC converter for 10 periods}
-As said in the introduction, the first step to this laboratory assignment was to simulate a simple AC/DC converter in NGSpice, the circuit features an ideal transformer, using a current controlled voltage source as well as a voltage controlled current source as explained by the professor in a previous lecture, as well as an envelope detector and a voltage regulator. \par
+As said in the introduction, the first step to this laboratory assignment was to simulate a simple AC/DC converter in NGSpice, the circuit features an ideal transformer, using a current controlled voltage source and a voltage controlled current source as explained by the professor in a previous lecture, as well as an envelope detector and a voltage regulator. \par
 This AC/DC converter was simulated for 10 periods and all the analysis were made measuring on a $5e-5$ step in order to evaluate at least 1000 points during the 10 periods. In order to calculate this step we used the frequency of the AC source to know the period and then we multiplied this period by 10 in order to get the total time. We then divided the total time by 1000 points and made the step even smaller than that in order to make sure it had more than 1000 points but not too small that the program ran slowly. \par
-This circuit was first made simple and was elaborated along the way, making it output the correct voltage, increasing the merit figure.
+This circuit was first made simple and was elaborated along the way, making it output the correct voltage and only then increasing the merit figure.
 
 \subsection{Output voltage level}
 After describing the circuit we made NGSpice measure the average output voltage and using a transient analysis we plotted both the average and the signal of the output voltage in the same graph. \par
@@ -27,7 +27,7 @@ The table and the graph below show the results we got.
 \end{figure}
 
 \subsection{Output of the Envelope Detector and voltage Regulator circuits}
-The output voltages of both the Envelope Detector as well as the Voltage Regulator circuits were plotted and put each in a different graph as well as a graph with both voltages plotted. \par
+The output voltages of both the Envelope Detector and the Voltage Regulator circuits were plotted and put each in a different graph as well as a graph with both voltages plotted. \par
 The three graphs are in the images below.
 
 \begin{figure}[H] \centering
