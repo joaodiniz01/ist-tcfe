@@ -100,17 +100,23 @@ legend("ripple")
 print ("ripple.eps", "-depsc");
 
 %Merit
-cost_R = R3/1000
-cost_C = C/(1e-6)
-cost_d = 0.1*25
-cost = cost_R + cost_C + cost_d
-M = 1/(cost*(vripple + Vdc_O + 1e-6))
+vripple_n = 5.616237e-03
+Vdc_O_n = 2.280889e-04
+cost_R = R3/1000;
+cost_C = C/(1e-6);
+cost_d = 0.1*25;
+cost = cost_R + cost_C + cost_d;
+M = 1/(cost*(vripple_n + Vdc_O_n + 1e-6));
 
-%Table
+%Tables
 fid = fopen ("conclusion.tex", "w");
 fprintf(fid, "Resistor Cost & %e \\\\ \\hline \n", cost_R);
 fprintf(fid, "Capacitor Cost & %e \\\\ \\hline \n", cost_C);
 fprintf(fid, "Diode Cost & %e \\\\ \\hline \n", cost_d);
 fprintf(fid, "Total Cost & %e \\\\ \\hline \n", cost);
 fprintf(fid, "Merit & %e \\\\ \n", M);
+fclose (fid);
+
+fid = fopen ("ripple_octave.tex", "w");
+fprintf(fid, "Ripple & %e \\\\ \\hline \n", vripple);
 fclose (fid);
