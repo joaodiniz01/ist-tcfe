@@ -1,0 +1,81 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Summing up, this laboratory provided us the opportunity to understand how the envelope detector and voltage regulator circuits work and, also, how to improve their efficieny.\par
+Contrarily to the previous lab assignments, there are some differences between the theoretical and simulation values obtained. This can be explained by the non linear components used in this laboratory: the diodes. In the previous lab assignments only linear components were used and because of that the simple theoretical analysis made matched perfectly the simulation analysis, as it should. This was no longer the case in this assignment. \par
+As for the merit figure calculation, we used Spice's values as they provide the most accurate results. \par
+Finally, we are going to compare the results from simulation and theoretical analysis side by side: \par
+%compararações
+
+\begin{center}
+  \begin{tabular}{ | c | c | }
+    \hline    
+    {\bf Name} & {\bf Value} \\ \hline
+    \input{../mat/conclusion}
+    \hline
+  \end{tabular}
+  \captionof{figure}{Merit Figure Table}
+\end{center}
+
+\begin{figure}[H]
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../mat/outputdc.pdf}
+      \caption{Theoretical Output Voltage Level}
+    \endminipage\hfill
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../sim/transient1.pdf}
+      \caption{Simulation Output Voltage Level}
+    \endminipage\hfill
+\end{figure}
+
+\begin{center}
+  \begin{tabular}{ | c | c | }
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{../mat/ripple_octave}
+  \end{tabular}
+  \captionof{figure}{Theoretical Ripple}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{ | c | c | }
+    \hline    
+    {\bf Name} & {\bf Value [V]} \\ \hline
+    \input{ripple_tab}
+  \end{tabular}
+  \captionof{figure}{Simulation Ripple}
+\end{center}
+
+\begin{figure}[H]
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../mat/envelope.pdf}
+      \caption{Theoretical Envelope Detector Voltage Level}
+    \endminipage\hfill
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../sim/transient2.pdf}
+      \caption{Simulation Envelope Detector Voltage Level}
+    \endminipage\hfill
+\end{figure}
+
+\begin{figure}[H]
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../mat/outputdc.pdf}
+      \caption{Theoretical Voltage Regulator Voltage Level}
+    \endminipage\hfill
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../sim/transient3.pdf}
+      \caption{Simulation Voltage Regulator Voltage Level}
+    \endminipage\hfill
+\end{figure}
+
+\begin{figure}[H]
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../mat/v012.pdf}
+      \caption{Theoretical $v_0-12$ Voltage Level}
+    \endminipage\hfill
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../sim/transient5.pdf}
+      \caption{Simulation $v_0-12$ Voltage Level}
+    \endminipage\hfill
+\end{figure}
+
