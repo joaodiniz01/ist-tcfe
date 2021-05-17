@@ -54,13 +54,37 @@ plot vp(coll)
 hardcopy vo1f.ps vdb(coll)
 
 
-
 plot vdb(out)
 plot vp(out)
-hardcopy vo2f.ps vdb(coll)
+hardcopy vo2f.ps vdb(out)
 
+
+echo  "outros_TAB"
 *input impedance in kohm
 print v(in2)[40]/(v(in)[40]-v(in2)[40])/100*1000
+*Bandwith
+meas ac f1 WHEN vdb(out)=max(vdb(out))-3 RISE=1
+meas ac f2 WHEN vdb(out)=max(vdb(out))-3 CROSS=LAST
+*Voltage Gain
+print maximum(v(out))/maximum(v(in))
+echo  "outros_END"
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-5 1e-2
+
+hardcopy vin.ps v(in)
+echo vin_FIG
+
+echo "********************************************"
+echo  "Transient analysis"
+echo "********************************************"
+tran 1e-5 1e-2
+
+hardcopy vout.ps v(out)
+echo vout_FIG
+
 
 *need a different setup to measure output impedance
 
