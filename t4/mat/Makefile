@@ -3,7 +3,7 @@
 # ---------------------------------------------------------
 all: | ../doc/octave.log convert
 
-../doc/octave.log: l3math.m
+../doc/octave.log: t4.m
 	octave $< > $@
 	
 convert: 

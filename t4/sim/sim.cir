@@ -9,15 +9,15 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 Rin in in2 100
 
 * input coupling capacitor
-Ci in2 base 1m
+Ci in2 base 800u
 
 * bias circuit
-R1 vcc base 80k
+R1 vcc base 72k
 R2 base 0 20k
 
 * gain stage
 Q1 coll base emit BC547A
-Rc vcc coll 1k
+Rc vcc coll 1000
 Re emit 0 100
 
 * bypass capacitor
@@ -26,20 +26,24 @@ Cb emit 0 1m
 
 * output stage
 Q2 0 coll emit2 BC557A
-Rout emit2 vcc 100
+Rout emit2 vcc 200
 
 * output coupling capacitor
 Co emit2 out 1u
 
 * load
-RL out 0 8
+Vout out out0 0
+RL out0 0 8
 
 .op
 .end
-
 .control
 
+op
+echo "op_TAB"
 print all
+echo "op_END"
+
 
 * time analysis
 tran 1e-5 1e-2
@@ -58,16 +62,24 @@ plot vdb(out)
 plot vp(out)
 hardcopy vo2f.ps vdb(out)
 
+*MEASURE
 
-echo  "outros_TAB"
-*input impedance in kohm
-print v(in2)[40]/(v(in)[40]-v(in2)[40])/100*1000
-*Bandwith
 meas ac f1 WHEN vdb(out)=max(vdb(out))-3 RISE=1
 meas ac f2 WHEN vdb(out)=max(vdb(out))-3 CROSS=LAST
-*Voltage Gain
-print maximum(v(out))/maximum(v(in))
-echo  "outros_END"
+let bandwidth = f2-f1
+let voltage_gain = abs(v(out)[40]/v(in)[40])
+*impedances in kohm
+let input_impedance = 100*v(in)[40]/(v(in)[40]-v(in2)[40])/1000
+let output_impedance = v(out)[40]/i(vout)[40]
+
+echo  "values_TAB"
+print f1
+print f2
+print bandwidth
+print voltage_gain
+print input_impedance
+print output_impedance
+echo  "values_END"
 
 echo "********************************************"
 echo  "Transient analysis"
@@ -85,8 +97,6 @@ tran 1e-5 1e-2
 hardcopy vout.ps v(out)
 echo vout_FIG
 
-
-*need a different setup to measure output impedance
 
 .endc 
 
