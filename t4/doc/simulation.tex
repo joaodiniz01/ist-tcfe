@@ -2,84 +2,85 @@
 \label{sec:simulation}
 
 \subsection{Simulating the AC/DC converter for 10 periods}
-As said in the introduction, the first step to this laboratory assignment was to simulate a simple AC/DC converter in NGSpice, the circuit features an ideal transformer, using a current controlled voltage source and a voltage controlled current source as explained by the professor in a previous lecture, as well as an envelope detector and a voltage regulator. \par
-This AC/DC converter was simulated for 10 periods and all the analysis were made measuring on a $5e-5$ step in order to evaluate at least 1000 points during the 10 periods. In order to calculate this step we used the frequency of the AC source to know the period and then we multiplied this period by 10 in order to get the total time. We then divided the total time by 1000 points and made the step even smaller than that in order to make sure it had more than 1000 points but not too small that the program ran slowly. \par
-This circuit was first made simple and was elaborated along the way, making it output the correct voltage and only then increasing the merit figure.
+As said in the introduction, the first step to this laboratory assignment was to simulate an Audio Amplifier using the script given by the professor in NGSpice. This script included both a gain stage as well as an output stage.\par
+After running the given script and implementing some code in order to get the figures asked by the professor, we performed incremental modifications to increase the merit figure.
 
-\subsection{Output voltage level}
-After describing the circuit we made NGSpice measure the average output voltage and using a transient analysis we plotted both the average and the signal of the output voltage in the same graph. \par
-The table and the graph below show the results we got.
+\subsection{Operating Point}
+After modifying the circuit we made NGSpice output the operating point values for every branch in the circuit in order to compare the results with the ones we got in the Theoretical Analysis in Octave. \par
+The results we got are in the table below
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{average_tab}
+    {\bf Name} & {\bf Values [V or A]} \\ \hline
+    \input{op_tab}
   \end{tabular}
-  \label{tab:average}
+  \label{tab:op}
+  \captionof{figure}{Simulation Operating Point}
 \end{table}
 
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient1.pdf}
-\caption{Plot of the average and the signal of the Output Voltage.}
-\label{fig:transient1}
-\end{figure}
-
-\subsection{Output of the Envelope Detector and voltage Regulator circuits}
-The output voltages of both the Envelope Detector and the Voltage Regulator circuits were plotted and put each in a different graph as well as a graph with both voltages plotted. \par
-The three graphs are in the images below.
+\subsection{Output Voltage Gain in the Passband}
+Another value requested by the laboratory assignment was the output voltage gain in the passband. This was achieved by dividing the output voltage by the input voltage. \par
+In the images below we can see both the input and output voltages plotted. The voltage gain value obtained is also in the table below:
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient2.pdf}
-\caption{Envelope Detector Output Voltage.}
-\label{fig:transient2}
+\includegraphics[width=0.7\linewidth]{../sim/vin.pdf}
+\caption{Input Voltage.}
+\label{fig:input}
 \end{figure}
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient3.pdf}
-\caption{Voltage Regulator Output Voltage.}
-\label{fig:transient3}
+\includegraphics[width=0.7\linewidth]{../sim/vout.pdf}
+\caption{Output Voltage.}
+\label{fig:output}
 \end{figure}
-
-\begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient4.pdf}
-\caption{Envelope Detector and Voltage Regulator Output Voltages.}
-\label{fig:transient4}
-\end{figure}
-
-\subsection{Output voltage ripple}
-We then made NGSpice measure the output voltage ripple, that is the difference between the maximum and the minimum values of the signal. \par
-The result we got is in the table below.
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
     {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{ripple_tab}
+    \input{voltage_tab}
   \end{tabular}
-  \label{tab:ripple}
+  \label{tab:voltage}
+  \captionof{figure}{Simulation Voltage Gain}
 \end{table}
 
-\subsection{$v_0 - 12$ plot}
-Lastly, we plotted $v_0 - 12$, which corresponds to the output AC component plus the DC deviation, and calculated the deviation, using the mean value. \par
-The plot can be seen in the image below as well as the deviation in the table below. \par
+\subsection{Lower and Upper $3dB$ cutoff frequencies and Bandwidth}
+After getting the output voltage gain in the previous subsection, we plotted the voltage gain in $dB$ in order to the frequency so that we could get the bandwidth. \par
+In the image below we can see the plot described above and the $3dB$ line. The lower and upper cutoff frequency and the bandwidth are also in the table below with $f1$ being the lower cutoff frequency and $f2$ the upper cutoff frequency.
 
 \begin{figure}[H] \centering
-\includegraphics[width=0.7\linewidth]{../sim/transient5.pdf}
-\caption{Output AC component + DC deviation.}
-\label{fig:transient5}
+\includegraphics[width=0.7\linewidth]{../sim/vo2f.pdf}
+\caption{Frequency Analysis}
+\label{fig:frequency}
 \end{figure}
 
 \begin{table}[H]
   \centering
   \begin{tabular}{|l|r|}
     \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{meanv012_tab}
+    {\bf Name} & {\bf Value [Hz]} \\ \hline
+    \input{bandwidth_tab}
   \end{tabular}
-  \label{tab:meanv012}
+  \label{tab:bandwidth}
+  \captionof{figure}{Simulation Bandwidth}
+\end{table}
+
+\subsection{Input and Output Impedances}
+Lastly, we made NGSpice give us the input and output impedances. \par
+The results we got are in the table below: 
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [$\Omega$]} \\ \hline
+    \input{impedance_tab}
+  \end{tabular}
+  \label{tab:impedance}
+  \captionof{figure}{Simulation Input and Output Impedances}
 \end{table}
 
 

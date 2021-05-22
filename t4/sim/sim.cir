@@ -49,6 +49,7 @@ echo "op_END"
 tran 1e-5 1e-2
 plot v(coll)
 hardcopy vo1.ps vdb(coll)
+echo vo1_FIG
 
 
 * frequency analysis
@@ -56,21 +57,39 @@ ac dec 10 10 100MEG
 plot vdb(coll)
 plot vp(coll)
 hardcopy vo1f.ps vdb(coll)
+echo vo1f_FIG
 
 
 plot vdb(out)
 plot vp(out)
-hardcopy vo2f.ps vdb(out)
+hardcopy vo2f.ps vdb(out) vecmax(vdb(out))-3
+echo vo2f_FIG
 
 *MEASURE
 
-meas ac f1 WHEN vdb(out)=max(vdb(out))-3 RISE=1
-meas ac f2 WHEN vdb(out)=max(vdb(out))-3 CROSS=LAST
+meas ac f1 WHEN vdb(out)=vecmax(vdb(out))-3 RISE=1
+meas ac f2 WHEN vdb(out)=vecmax(vdb(out))-3 CROSS=LAST
 let bandwidth = f2-f1
-let voltage_gain = abs(v(out)[40]/v(in)[40])
+let voltagegain = abs(v(out)[40]/v(in)[40])
 *impedances in kohm
-let input_impedance = 100*v(in)[40]/(v(in)[40]-v(in2)[40])/1000
-let output_impedance = v(out)[40]/i(vout)[40]
+let inputimpedance = 100*v(in)[40]/(v(in)[40]-v(in2)[40])/1000
+let outputimpedance = v(out)[40]/i(vout)[40]
+
+echo "voltage_TAB"
+print voltagegain
+echo "voltage_END"
+
+echo "bandwidth_TAB"
+print f1
+print f2
+print bandwidth
+echo "bandwidth_END"
+
+echo "impedance_TAB"
+print inputimpedance
+print outputimpedance
+echo "impedance_END"
+
 
 echo  "values_TAB"
 print f1
