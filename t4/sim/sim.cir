@@ -9,7 +9,7 @@ Vin in 0 0 ac 1.0 sin(0 10m 1k)
 Rin in in2 100
 
 * input coupling capacitor
-Ci in2 base 800u
+Ci in2 base 300u
 
 * bias circuit
 R1 vcc base 72k
@@ -17,19 +17,19 @@ R2 base 0 20k
 
 * gain stage
 Q1 coll base emit BC547A
-Rc vcc coll 1000
+Rc vcc coll 1k
 Re emit 0 100
 
 * bypass capacitor
-Cb emit 0 1m
+Cb emit 0 500u
 
 
 * output stage
 Q2 0 coll emit2 BC557A
-Rout emit2 vcc 200
+Rout emit2 vcc 400
 
 * output coupling capacitor
-Co emit2 out 1u
+Co emit2 out 500u
 
 * load
 Vout out out0 0
@@ -67,21 +67,26 @@ echo vo2f_FIG
 
 *MEASURE
 
-meas ac f1 WHEN vdb(out)=vecmax(vdb(out))-3 RISE=1
-meas ac f2 WHEN vdb(out)=vecmax(vdb(out))-3 CROSS=LAST
-let bandwidth = f2-f1
-let voltagegain = abs(v(out)[40]/v(in)[40])
+let costr = 92+1+0.1+0.4
+let costc = 300+500+500
+let cost = costr + costc + 0.2
+let maxgain = maximum(vdb(out))-3
+meas ac lower WHEN vdb(out)=maxgain CROSS=1
+meas ac upper WHEN vdb(out)=maxgain CROSS=LAST
+let bandwidth = upper-lower
+let voltagegain = maximum(vdb(out)-vdb(in2))
 *impedances in kohm
 let inputimpedance = 100*v(in)[40]/(v(in)[40]-v(in2)[40])/1000
 let outputimpedance = v(out)[40]/i(vout)[40]
+let merit = (voltagegain*bandwidth)/(cost*lower)
 
 echo "voltage_TAB"
 print voltagegain
 echo "voltage_END"
 
 echo "bandwidth_TAB"
-print f1
-print f2
+print lower
+print upper
 print bandwidth
 echo "bandwidth_END"
 
@@ -90,10 +95,14 @@ print inputimpedance
 print outputimpedance
 echo "impedance_END"
 
+echo "m_TAB"
+print merit
+echo "m_END"
+
 
 echo  "values_TAB"
-print f1
-print f2
+print lower
+print upper
 print bandwidth
 print voltage_gain
 print input_impedance
@@ -118,4 +127,3 @@ echo vout_FIG
 
 
 .endc 
-
