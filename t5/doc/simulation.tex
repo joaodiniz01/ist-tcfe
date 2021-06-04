@@ -1,0 +1,86 @@
+\section{Simulation analysis}
+\label{sec:simulation}
+As said in the introduction, the first step to this laboratory assignment was to simulate an Audio Amplifier using the script given by the professor in NGSpice. This script included both a gain stage as well as an output stage.\par
+After running the given script and implementing some code in order to get the figures asked by the professor, we performed incremental modifications to increase the merit figure.
+
+\subsection{Operating Point}
+After modifying the circuit we made NGSpice output the operating point values for every branch in the circuit in order to compare the results with the ones we got in the Theoretical Analysis in Octave. \par
+The results we got are in the table below
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Values [V]} \\ \hline
+    \input{op_tab}
+  \end{tabular}
+  \label{tab:op}
+  \captionof{figure}{Simulation Operating Point}
+\end{table}
+
+\subsection{Output Voltage Gain in the Passband}
+Another value requested by the laboratory assignment was the output voltage gain in the passband. This was achieved by dividing the output voltage by the input voltage. \par
+In the images below we can see both the input and output voltages plotted. The voltage gain value obtained is also in the table below:
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/vin.pdf}
+\caption{Input Voltage.}
+\label{fig:input}
+\end{figure}
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/vout.pdf}
+\caption{Output Voltage.}
+\label{fig:output}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [$dB$]} \\ \hline
+    \input{voltage_tab}
+  \end{tabular}
+  \label{tab:voltage}
+  \captionof{figure}{Simulation Voltage Gain}
+\end{table}
+
+\subsection{Lower and Upper $3dB$ cutoff frequencies and Bandwidth}
+After getting the output voltage gain in the previous subsection, we plotted the voltage gain in $dB$ in order to the frequency so that we could get the bandwidth. \par
+In the image below we can see the plot described above and the $3dB$ line. The lower and upper cutoff frequency and the bandwidth are also in the table below with $lower$ being the lower cutoff frequencies and $upper$ the upper cutoff frequency.
+
+\begin{figure}[H] \centering
+\includegraphics[width=0.7\linewidth]{../sim/vo2f.pdf}
+\caption{Frequency Analysis}
+\label{fig:frequency}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [Hz]} \\ \hline
+    \input{bandwidth_tab}
+  \end{tabular}
+  \label{tab:bandwidth}
+  \captionof{figure}{Simulation Bandwidth}
+\end{table}
+
+\subsection{Input and Output Impedances}
+Lastly, we made NGSpice give us the input and output impedances. \par
+The results we got are in the table below: 
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|r|}
+    \hline    
+    {\bf Name} & {\bf Value [$\Omega$]} \\ \hline
+    \input{impedance_tab}
+  \end{tabular}
+  \label{tab:impedance}
+  \captionof{figure}{Simulation Input and Output Impedances}
+\end{table}
+
+
+
+
