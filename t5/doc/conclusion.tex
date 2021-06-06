@@ -1,7 +1,7 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-Summing up, this laboratory provided us the opportunity to understand how an audio amplifier circuit works with both its gain and output stages.\par
+Summing up, this laboratory provided us the opportunity to understand how a band pass filter using an OP-AMP circuit works with how each component relates to the band and the voltage gain.\par
 Similarly to the previous lab assignment, there are some differences between the theoretical and simulation values obtained, this is the case for the OP analysis and also the impedances, for example. This can be explained by the non linear components used in this laboratory: the transistors. In the first 2 lab assignments only linear components were used and because of that the simple theoretical analysis made matched perfectly the simulation analysis, as it should. This was no longer the case in this assignment. \par
 As for the merit figure calculation, we used Spice's values as they provide the most accurate results. \par
 Finally, we are going to compare the results from simulation and theoretical analysis side by side: \par
@@ -19,40 +19,42 @@ Finally, we are going to compare the results from simulation and theoretical ana
 \begin{center}
   \begin{tabular}{ | c | c | }
     \hline    
-    {\bf Name} & {\bf Value [V or A]} \\ \hline
-    \input{../mat/OP1}
+    {\bf Name} & {\bf Value [$Hz$ or $dB$]} \\ \hline
+    \input{conc_tab}
     \hline
   \end{tabular}
-  \captionof{figure}{Theoretical Operating Point Gain Stage}
+  \captionof{figure}{Central Frequency, Voltage Gain - Simulation}
 \end{center}
 
 \begin{center}
   \begin{tabular}{ | c | c | }
     \hline    
-    {\bf Name} & {\bf Value [V or A]} \\ \hline
-    \input{../mat/OP2}
+    {\bf Name} & {\bf Value [$Hz$ or $dB$]} \\ \hline
+    \input{../mat/docImp2}
     \hline
   \end{tabular}
-  \captionof{figure}{Theoretical Operating Point Output Stage}
-\end{center}
-
-\begin{center}
-  \begin{tabular}{ | c | c | }
-    \hline    
-    {\bf Name} & {\bf Value [V]} \\ \hline
-    \input{op_tab}
-  \end{tabular}
-  \captionof{figure}{Simulation Operating Point}
+  \captionof{figure}{Central Frequency, Voltage Gain - Theoretical}
 \end{center}
 
 \begin{figure}[H]
     \minipage{0.45\textwidth}
-      \includegraphics[width=\linewidth]{../mat/fresponse.pdf}
-      \caption{Theoretical Gain Frequency Response}
+      \includegraphics[width=\linewidth]{../sim/vo1f.pdf}
+      \caption{Simulation Gain Frequency Response - $dB$}
     \endminipage\hfill
     \minipage{0.45\textwidth}
-      \includegraphics[width=\linewidth]{../sim/vo2f.pdf}
-      \caption{Simulation Gain Frequency Response}
+      \includegraphics[width=\linewidth]{../mat/fresponse1.pdf}
+      \caption{Theoretical Gain Frequency Response - $dB$}
+    \endminipage\hfill
+\end{figure}
+
+\begin{figure}[H]
+    \minipage{0.45\textwidth}
+      \includegraphics[width=\linewidth]{../sim/vo1p.pdf}
+      \caption{Simulation Gain Frequency Response - Phase}
+    \endminipage\hfill
+    \minipage{0.45\textwidth}
+      %\includegraphics[width=\linewidth]{../mat/fresponse2.pdf}
+      \caption{Theoretical Gain Frequency Response - Phase}
     \endminipage\hfill
 \end{figure}
 
@@ -60,21 +62,29 @@ Finally, we are going to compare the results from simulation and theoretical ana
   \begin{tabular}{ | c | c | }
     \hline    
     {\bf Name} & {\bf Value [$\Omega$]} \\ \hline
-    \input{../mat/docImp}
-    \hline
+    \input{inimpedance_tab}
   \end{tabular}
-  \captionof{figure}{Theoretical Input and Output Impedances}
+  \captionof{figure}{Simulation Input Impedance}
 \end{center}
 
 \begin{center}
   \begin{tabular}{ | c | c | }
     \hline    
     {\bf Name} & {\bf Value [$\Omega$]} \\ \hline
-    \input{impedance_tab}
+    \input{outimpedance_tab}
   \end{tabular}
-  \captionof{figure}{Simulation Input and Output Impedances}
+  \captionof{figure}{Simulation Output Impedance}
 \end{center}
 
+\begin{center}
+  \begin{tabular}{ | c | c | }
+    \hline    
+    {\bf Name} & {\bf Value [$\Omega$]} \\ \hline
+    \input{../mat/docImp3}
+    \hline
+  \end{tabular}
+  \captionof{figure}{Theoretical Input and Output Impedances}
+\end{center}
 
 
 

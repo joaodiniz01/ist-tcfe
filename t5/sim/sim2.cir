@@ -51,7 +51,7 @@
 
 Vcc vcc 0 5.0
 Vee vee 0 -5.0
-Vin in 0 0 ac 1.0 sin(0 10m 1k)
+Vin in 0 0
 
 X1 inv_out inv_in vcc vee outb uA741
 
@@ -70,8 +70,7 @@ R3 inv_out outb 100k
 R4 inv_out 0 1k
 
 
-* load
-*RL out 0 8
+Vout out 0 0 ac 1 sin(0 1 1000)
 
 .op
 .end
@@ -80,64 +79,17 @@ R4 inv_out 0 1k
 
 print all
 
-* time analysis
-tran 1e-5 1e-2
-plot v(out)
-hardcopy vo1.ps v(out)
-echo vo1_FIG
-
-
-
 * frequency analysis
 ac dec 10 10 100MEG
-plot vdb(out)
-plot vp(out)
-hardcopy vo1f.ps vdb(out) 
-echo vo1f_FIG
-hardcopy vo1p.ps vp(out) 
-echo vo1p_FIG
 
 *MEASURE
+*output impedance in kohm
+let outputimpedance = v(out)[40]/Vout#branch[40]
 
-let maxgain = maximum(vdb(out))-3
-meas ac lower WHEN vdb(out)=maxgain CROSS=1
-meas ac upper WHEN vdb(out)=maxgain CROSS=LAST
-let central = sqrt(lower*upper)
-let voltagegain = maximum(vdb(out)-vdb(in))
-*impedances in kohm
-let inputimpedance = v(in)[40]/Vin#branch[40]
-*merit
-let costr = 2 + 101
-let costc = 0.330
-let cost = costr + costc
-let gaindeviation = abs(40-voltagegain)
-let fdeviation = abs(1000-central)
-let merit = 1/(cost*(gaindeviation+fdeviation+(1e-6)))
+echo "outimpedance_TAB"
+print outimpedance
+echo "outimpedance_END"
 
-echo "voltage_TAB"
-print voltagegain
-echo "voltage_END"
-
-echo "central_TAB"
-print lower
-print upper
-print central
-echo "central_END"
-
-echo "inimpedance_TAB"
-print inputimpedance
-echo "inimpedance_END"
-
-echo "conc_TAB"
-print central
-print voltagegain
-echo "conc_END"
-
-echo "m_TAB"
-print merit
-*print fdeviation
-*print gaindeviation
-echo "m_END"
 
 .endc 
 
