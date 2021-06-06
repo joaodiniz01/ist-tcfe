@@ -87,7 +87,7 @@ ac dec 10 10 100MEG
 let outputimpedance = v(out)[40]/Vout#branch[40]
 
 echo "outimpedance_TAB"
-print outimpedance
+print outputimpedance
 echo "outimpedance_END"
 
 
