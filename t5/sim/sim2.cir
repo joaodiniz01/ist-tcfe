@@ -66,7 +66,7 @@ R2 outb out 1k
 C2 out 0 110n
 
 *R3 and R4 fixed
-R3 inv_out outb 100k
+R3 inv_out outb 120k
 R4 inv_out 0 1k
 
 
@@ -84,7 +84,7 @@ ac dec 10 10 100MEG
 
 *MEASURE
 *output impedance in kohm
-let outputimpedance = v(out)[40]/Vout#branch[40]
+let outputimpedance = -(v(out)[20]/Vout#branch[20])
 
 echo "outimpedance_TAB"
 print outputimpedance
